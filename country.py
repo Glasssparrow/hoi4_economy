@@ -1,4 +1,8 @@
-
+from .constants import (
+    FACTORY_COST, MILITARY_FACTORY_COST, INFRASTRUCTURE_COST,
+    FACTORY_OUTPUT, MILITARY_FACTORY_OUTPUT, INFRASTRUCTURE_BONUS,
+    conscription, economy, trade
+)
 
 class Country:
 
