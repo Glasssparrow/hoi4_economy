@@ -4,6 +4,7 @@ from .constants import (
     conscription, economy, trade
 )
 
+
 class Country:
 
     def __init__(self):
