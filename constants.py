@@ -1,4 +1,4 @@
-from .laws import Law
+from laws import Law
 
 
 FACTORY_COST = 10000
