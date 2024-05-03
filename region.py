@@ -8,6 +8,7 @@ class Region:
         self.name = name
         self.factories_limit = max_factories
         self.init_fact_limit = max_factories
+        self.infrastructure_limit = 5
         self.infrastructure = infrastructure
         self.factories = factories
         self.military_factories = military_factories
