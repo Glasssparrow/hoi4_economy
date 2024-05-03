@@ -1,6 +1,4 @@
 from constants import (
-    FACTORY_COST, MILITARY_FACTORY_COST, INFRASTRUCTURE_COST,
-    FACTORY_OUTPUT, MILITARY_FACTORY_OUTPUT, INFRASTRUCTURE_BONUS,
     conscription, economy, trade
 )
 
@@ -15,6 +13,10 @@ class Country:
         self.inf_constr_bonus = 0
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
+
+        self.conscription_law = conscription
+        self.economy_law = economy
+        self.trade_law = trade
 
         self.constr_tech = 0
         self.industry_tech = 0
@@ -86,6 +88,26 @@ class Country:
             self.factories_available = round(factories_available, 0)
         else:
             self.factories_available = 0
+
+    @staticmethod
+    def _move_law(number, law):
+        if not isinstance(number, (float, int)):
+            raise Exception("Wrong type, should be int or float")
+        if number > 0:
+            law.law_up()
+        elif number < 0:
+            law.law_down()
+        else:
+            pass
+
+    def move_conscription(self, number):
+        self._move_law(number, self.conscription_law)
+
+    def move_economy(self, number):
+        self._move_law(number, self.economy_law)
+
+    def move_trade(self, number):
+        self._move_law(number, self.trade_law)
 
     def get_civ_constr_bonus(self):
         pass
