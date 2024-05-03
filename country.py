@@ -13,6 +13,7 @@ class Country:
         self.civil_constr_bonus = 0
         self.mil_constr_bonus = 0
         self.mil_output_bonus = 0
+        self.factory_limit_bonus = 0
         self.constr_tech = 0
         self.industry_tech = 0
         self.ind_and_constr_tech_limit = 5
@@ -41,11 +42,13 @@ class Country:
         if self.industry_tech >= 5:
             raise Exception("Лимит технологии 5 уровень")
         elif self._distributed_industry:
-            self.industry_tech += 1
             self.mil_output_bonus += 0.1
         else:
-            self.industry_tech += 1
             self.mil_output_bonus += 0.15
+        self.industry_tech += 1
+        self.factory_limit_bonus += 0.2
+        for region in self.regions:
+            region.recalculate_factories_limit(self.factory_limit_bonus)
 
     def upgrade_construction_tech(self):
         if self.constr_tech >= 5:
