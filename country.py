@@ -86,3 +86,12 @@ class Country:
             self.factories_available = round(factories_available, 0)
         else:
             self.factories_available = 0
+
+    def get_civ_constr_bonus(self):
+        pass
+
+    def get_mil_constr_bonus(self):
+        pass
+
+    def get_inf_constr_bonus(self):
+        pass
