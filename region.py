@@ -28,5 +28,7 @@ class Region:
         self.chromium = chromium
 
     def recalculate_factories_limit(self, science_bonus):
-        self.factories_limit = (1+science_bonus)*self.init_fact_limit
+        self.factories_limit = (
+            round((1+science_bonus)*self.init_fact_limit, 0)
+        )
 
