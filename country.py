@@ -15,6 +15,7 @@ class Country:
         self.conscription_law = conscription
         self.economy_law = economy
         self.trade_law = trade
+        self.list_of_laws = [conscription, economy, trade]
 
         self.constr_tech = 0
         self.industry_tech = 0
@@ -108,10 +109,22 @@ class Country:
         self._move_law(number, self.trade_law)
 
     def get_civ_constr_bonus(self):
-        pass
+        constr_modifier = 1
+        for law in self.list_of_laws:
+            constr_modifier += law.constr[law.pos]
+            constr_modifier += law.civil_constr[law.pos]
+        constr_modifier += self.constr_bonus + self.civil_constr_bonus
+        return constr_modifier
 
     def get_mil_constr_bonus(self):
-        pass
+        constr_modifier = 1
+        for law in self.list_of_laws:
+            constr_modifier += law.constr[law.pos]
+            constr_modifier += law.mil_constr[law.pos]
+        constr_modifier += self.constr_bonus + self.mil_constr_bonus
+        return constr_modifier
 
     def get_inf_constr_bonus(self):
-        pass
+        constr_modifier = 1
+        constr_modifier += self.constr_bonus + self.inf_constr_bonus
+        return constr_modifier
