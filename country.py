@@ -14,10 +14,16 @@ class Country:
         self.mil_constr_bonus = 0
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
+
         self.constr_tech = 0
         self.industry_tech = 0
         self.ind_and_constr_tech_limit = 5
         self._distributed_industry = False
+
+        self.factories = 0
+        self.mil_factories = 0
+        self.factories_available = 0
+        self.consumer_goods = 0
 
     def add_region(self, region):
         self.regions.append(region)
@@ -57,3 +63,25 @@ class Country:
         else:
             self.constr_tech += 1
             self.constr_bonus += 0.1
+
+    def get_consumer_goods(self):
+        return self.consumer_goods
+
+    def add_consumer_goods(self, consumer_goods_modifier):
+        self.consumer_goods += consumer_goods_modifier
+
+    def calculate_factories(self):
+        civil_fact = 0
+        mil_fact = 0
+        for region in self.regions:
+            civil_fact += region.factories
+            mil_fact += region.military_factories
+        factories_available = (
+            civil_fact - (civil_fact+mil_fact)*self.get_consumer_goods()
+        )
+        self.factories = civil_fact
+        self.mil_factories = mil_fact
+        if factories_available > 0:
+            self.factories_available = round(factories_available, 0)
+        else:
+            self.factories_available = 0
