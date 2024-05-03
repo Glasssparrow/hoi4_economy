@@ -5,6 +5,8 @@ class Country:
 
     def __init__(self):
         self.regions = []
+        self.queue = []
+
         self.constr_bonus = 0
         self.civil_constr_bonus = 0
         self.mil_constr_bonus = 0
