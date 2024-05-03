@@ -1,6 +1,4 @@
-from constants import (
-    conscription, economy, trade
-)
+from constants import conscription, economy, trade
 
 
 class Country:
