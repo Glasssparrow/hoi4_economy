@@ -34,9 +34,10 @@ class Country:
 
     @distributed_industry.setter
     def distributed_industry(self, boolean):
-        if self.industry_tech != 0:
+        if (self.industry_tech != 0
+                and self._distributed_industry != boolean):
             raise Exception("Нельзя сменить технологию")
-        self._distributed_industry = True
+        self._distributed_industry = boolean
 
     def upgrade_industry_tech(self):
         if self.industry_tech >= 5:
