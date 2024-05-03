@@ -12,6 +12,7 @@ class Country:
         self.constr_bonus = 0
         self.civil_constr_bonus = 0
         self.mil_constr_bonus = 0
+        self.inf_constr_bonus = 0
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
 
