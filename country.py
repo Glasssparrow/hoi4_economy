@@ -32,6 +32,9 @@ class Country:
     def calculate_day(self):
         pass
 
+    def add_order(self):
+        pass
+
     def add_region(self, region):
         self.regions.append(region)
 
