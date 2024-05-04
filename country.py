@@ -29,6 +29,9 @@ class Country:
         self.factories_available = 0
         self.consumer_goods = 0
 
+    def calculate_day(self):
+        pass
+
     def add_region(self, region):
         self.regions.append(region)
 
