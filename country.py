@@ -32,8 +32,14 @@ class Country:
     def calculate_day(self):
         pass
 
-    def add_order(self):
-        pass
+    def add_order(self, order):
+        for i, region in enumerate(self.regions):
+            if order.target_region == region.name:
+                order.target_region_id = i
+                break
+        self.queue.append(order)
+        if order.target_region_id is None:
+            raise Exception("Регион не найден")
 
     def add_region(self, region):
         self.regions.append(region)
