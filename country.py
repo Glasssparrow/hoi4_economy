@@ -32,6 +32,9 @@ class Country:
     def calculate_day(self):
         pass
 
+    def preparations(self):
+        pass
+
     def add_order(self, order):
         for i, region in enumerate(self.regions):
             if order.target_region == region.name:
