@@ -37,7 +37,11 @@ class Country:
         self.events.append(event)
 
     def preparations(self):
-        pass
+        for cycle in range(len(self.events)-1):
+            for i in range(len(self.events)-1):
+                if self.events[i].date > self.events[i+1].date:
+                    self.events[i], self.events[i+1] = (
+                        self.events[i+1], self.events[i])
 
     def add_order(self, order):
         for i, region in enumerate(self.regions):
