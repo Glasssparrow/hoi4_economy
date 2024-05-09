@@ -6,6 +6,7 @@ class Country:
     def __init__(self):
         self.regions = []
         self.queue = []
+        self.events = []
 
         self.constr_bonus = 0
         self.civil_constr_bonus = 0
@@ -31,6 +32,9 @@ class Country:
 
     def calculate_day(self):
         pass
+
+    def add_event(self, event):
+        self.events.append(event)
 
     def preparations(self):
         pass
