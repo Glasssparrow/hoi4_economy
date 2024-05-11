@@ -42,6 +42,10 @@ class Country:
                 if self.events[i].date > self.events[i+1].date:
                     self.events[i], self.events[i+1] = (
                         self.events[i+1], self.events[i])
+        # Активируем все ивенты нулевого дня
+        while len(self.events) > 0 and self.events[0].date == 0:
+            self.events[0].activate(self)
+            self.events.pop(0)
 
     def add_order(self, order):
         for i, region in enumerate(self.regions):
