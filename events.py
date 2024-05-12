@@ -12,3 +12,6 @@ class Event:
 
     def activate(self, owner):
         pass
+
+    def _activate_policies(self):
+        pass
