@@ -14,6 +14,6 @@ class Event:
         pass
 
     def _activate_policies(self, owner):
-        for x in []:
-            if x in self.policies.keys():
+        for k, v in self.policies.values():
+            if k in []:
                 pass
