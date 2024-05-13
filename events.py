@@ -15,5 +15,5 @@ class Event:
 
     def _activate_policies(self, owner):
         for k, v in self.policies.values():
-            if k in []:
-                pass
+            if k not in []:
+                raise Exception(f"{k} не корректное событие!")
