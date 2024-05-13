@@ -13,5 +13,7 @@ class Event:
     def activate(self, owner):
         pass
 
-    def _activate_policies(self):
-        pass
+    def _activate_policies(self, owner):
+        for x in []:
+            if x in self.policies:
+                pass
