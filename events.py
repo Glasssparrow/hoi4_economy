@@ -12,9 +12,15 @@ class Event:
         self.policies = policies
 
     def activate(self, owner):
-        pass
+        if self.order is None:
+            return
+        else:
+            owner.add_order(self.order)
+        self._activate_policies(owner)
 
     def _activate_policies(self, owner):
+        if self.policies is None:
+            return
         for k, v in self.policies.values():
             if k not in [
                 ADD_MILITARY_ADVISOR_COMMAND,
