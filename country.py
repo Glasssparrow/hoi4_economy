@@ -32,7 +32,7 @@ class Country:
         self.consumer_goods = 0
 
     def calculate_day(self):
-        pass
+        self.calculate_factories()
 
     def add_event(self, event):
         self.events.append(event)
