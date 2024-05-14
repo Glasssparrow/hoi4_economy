@@ -1,4 +1,5 @@
 from queue import Order
+from constants import *
 
 
 class Event:
@@ -16,17 +17,17 @@ class Event:
     def _activate_policies(self, owner):
         for k, v in self.policies.values():
             if k not in [
-                "military_advisor",
-                "civil_advisor",
-                "distributed_industry",
-                "industry_tech",
-                "construction_tech",
-                "move_conscription",
-                "move_trade",
-                "move_economy",
-                "add_consumer_goods",
-                "get_civil_constr_bonus",
-                "get_mil_constr_bonus",
-                "get_inf_constr_bonus",
+                ADD_MILITARY_ADVISOR_COMMAND,
+                ADD_CIVIL_ADVISOR_COMMAND,
+                CHANGE_INDUSTRY_TYPE_COMMAND,
+                UPGRADE_INDUSTRY_TECH_COMMAND,
+                UPGRADE_CONSTRUCTION_TECH_COMMAND,
+                CHANGE_CONSCRIPTION_COMMAND,
+                CHANGE_TRADE_COMMAND,
+                CHANGE_ECONOMY_COMMAND,
+                ADD_CONSUMER_GOODS_COMMAND,
+                GET_CIVIL_CONSTR_BONUS_COMMAND,
+                GET_MIL_CONSTR_BONUS_COMMAND,
+                GET_INF_CONSTR_BONUS_COMMAND,
             ]:
                 raise Exception(f"{k} не корректное событие!")
