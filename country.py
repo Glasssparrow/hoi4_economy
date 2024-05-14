@@ -3,7 +3,8 @@ from constants import conscription, economy, trade
 
 class Country:
 
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self.regions = []
         self.queue = []
         self.events = []
