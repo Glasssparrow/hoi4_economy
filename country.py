@@ -34,6 +34,7 @@ class Country:
     def calculate_day(self):
         self.calculate_factories()
         free_factories = self.factories_available
+        queue_position = 0
         factories_for_region = 0
         while free_factories > 0:
             if free_factories > 15:
@@ -42,6 +43,10 @@ class Country:
             else:
                 factories_for_region = free_factories
                 free_factories = 0
+            self.regions[self.queue[queue_position]].construct(
+                factories_for_region, 
+                self.queue[queue_position].building_type,
+            )
 
     def add_event(self, event):
         self.events.append(event)
