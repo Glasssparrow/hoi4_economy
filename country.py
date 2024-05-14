@@ -33,6 +33,15 @@ class Country:
 
     def calculate_day(self):
         self.calculate_factories()
+        free_factories = self.factories_available
+        factories_for_region = 0
+        while free_factories > 0:
+            if free_factories > 15:
+                factories_for_region = 15
+                free_factories += -15
+            else:
+                factories_for_region = free_factories
+                free_factories = 0
 
     def add_event(self, event):
         self.events.append(event)
