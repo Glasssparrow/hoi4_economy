@@ -9,10 +9,10 @@ class Country:
         self.queue = []
         self.events = []
 
-        self.constr_bonus = 0
-        self.civil_constr_bonus = 0
-        self.mil_constr_bonus = 0
-        self.inf_constr_bonus = 0
+        self._constr_bonus = 0
+        self._civil_constr_bonus = 0
+        self._mil_constr_bonus = 0
+        self._inf_constr_bonus = 0
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
 
@@ -32,10 +32,9 @@ class Country:
         self.consumer_goods = 0
 
     def calculate_day(self):
-        self.calculate_factories()
+        self._calculate_factories()
         free_factories = self.factories_available
         queue_position = 0
-        factories_for_region = 0
         while free_factories > 0:
             if free_factories > 15:
                 factories_for_region = 15
@@ -75,10 +74,10 @@ class Country:
         self.regions.append(region)
 
     def add_military_advisor(self):
-        self.mil_constr_bonus = 0.1
+        self._mil_constr_bonus = 0.1
 
     def add_civil_advisor(self):
-        self.civil_constr_bonus = 0.1
+        self._civil_constr_bonus = 0.1
 
     @property
     def distributed_industry(self):
@@ -108,7 +107,7 @@ class Country:
             raise Exception("Лимит технологии 5 уровень")
         else:
             self.constr_tech += 1
-            self.constr_bonus += 0.1
+            self._constr_bonus += 0.1
 
     def get_consumer_goods(self):
         return self.consumer_goods
@@ -116,7 +115,7 @@ class Country:
     def add_consumer_goods(self, consumer_goods_modifier):
         self.consumer_goods += consumer_goods_modifier
 
-    def calculate_factories(self):
+    def _calculate_factories(self):
         civil_fact = 0
         mil_fact = 0
         for region in self.regions:
@@ -131,6 +130,18 @@ class Country:
             self.factories_available = round(factories_available, 0)
         else:
             self.factories_available = 0
+
+    @property
+    def civil_constr_bonus(self):
+        pass
+
+    @property
+    def mil_constr_bonus(self):
+        pass
+
+    @property
+    def inf_constr_bonus(self):
+        pass
 
     @staticmethod
     def _move_law(number, law):
@@ -157,7 +168,7 @@ class Country:
         for law in self.list_of_laws:
             constr_modifier += law.constr[law.pos]
             constr_modifier += law.civil_constr[law.pos]
-        constr_modifier += self.constr_bonus + self.civil_constr_bonus
+        constr_modifier += self._constr_bonus + self._civil_constr_bonus
         return constr_modifier
 
     def get_mil_constr_bonus(self):
@@ -165,10 +176,10 @@ class Country:
         for law in self.list_of_laws:
             constr_modifier += law.constr[law.pos]
             constr_modifier += law.mil_constr[law.pos]
-        constr_modifier += self.constr_bonus + self.mil_constr_bonus
+        constr_modifier += self._constr_bonus + self._mil_constr_bonus
         return constr_modifier
 
     def get_inf_constr_bonus(self):
         constr_modifier = 1
-        constr_modifier += self.constr_bonus + self.inf_constr_bonus
+        constr_modifier += self._constr_bonus + self._inf_constr_bonus
         return constr_modifier
