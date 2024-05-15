@@ -44,7 +44,7 @@ class Country:
                 factories_for_region = free_factories
                 free_factories = 0
             self.regions[self.queue[queue_position]].construct(
-                factories_for_region, 
+                factories_for_region,
                 self.queue[queue_position].building_type,
             )
 
