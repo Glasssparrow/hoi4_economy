@@ -133,15 +133,15 @@ class Country:
 
     @property
     def civil_constr_bonus(self):
-        pass
+        return 0
 
     @property
     def mil_constr_bonus(self):
-        pass
+        return 0
 
     @property
     def inf_constr_bonus(self):
-        pass
+        return 0
 
     @staticmethod
     def _move_law(number, law):
