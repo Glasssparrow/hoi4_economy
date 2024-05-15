@@ -33,6 +33,8 @@ class Region:
             round((1+science_bonus)*self.init_fact_limit, 0)
         )
 
-    def construct(self, factories, type_of_building):
+    def construct(self, factories, type_of_building,
+                  civil_constr_bonus=0, mil_constr_bonus=0,
+                  inf_constr_bonus=0):
         pass
 
