@@ -35,6 +35,9 @@ class Country:
         self._calculate_factories()
         free_factories = self.factories_available
         queue_position = 0
+        civil_constr_bonus = self.civil_constr_bonus
+        mil_constr_bonus = self.mil_constr_bonus
+        inf_constr_bonus = self.inf_constr_bonus
         while free_factories > 0:
             if free_factories > 15:
                 factories_for_region = 15
@@ -45,6 +48,9 @@ class Country:
             self.regions[self.queue[queue_position]].construct(
                 factories_for_region,
                 self.queue[queue_position].building_type,
+                civil_constr_bonus=civil_constr_bonus,
+                mil_constr_bonus=mil_constr_bonus,
+                inf_constr_bonus=inf_constr_bonus,
             )
 
     def add_event(self, event):
