@@ -37,4 +37,3 @@ class Region:
                   civil_constr_bonus=0, mil_constr_bonus=0,
                   inf_constr_bonus=0):
         pass
-
