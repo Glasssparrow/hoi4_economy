@@ -110,7 +110,10 @@ class Country:
             self._constr_bonus += 0.1
 
     def get_consumer_goods(self):
-        return self.consumer_goods
+        cons_goods = self.consumer_goods
+        for law in self.list_of_laws:
+            cons_goods += law.cons_goods[law.pos]
+        return cons_goods
 
     def add_consumer_goods(self, consumer_goods_modifier):
         self.consumer_goods += consumer_goods_modifier
@@ -133,15 +136,29 @@ class Country:
 
     @property
     def civil_constr_bonus(self):
-        return 0
+        result = self._constr_bonus
+        result += self._civil_constr_bonus
+        for law in self.list_of_laws:
+            result += law.constr[law.pos]
+            result += law.civil_constr[law.pos]
+        return result
 
     @property
     def mil_constr_bonus(self):
-        return 0
+        result = self._constr_bonus
+        result += self._civil_constr_bonus
+        for law in self.list_of_laws:
+            result += law.constr[law.pos]
+            result += law.civil_constr[law.pos]
+        return result
 
     @property
     def inf_constr_bonus(self):
-        return 0
+        result = self._constr_bonus
+        result += self._inf_constr_bonus
+        for law in self.list_of_laws:
+            result += law.constr[law.pos]
+        return result
 
     @staticmethod
     def _move_law(number, law):
