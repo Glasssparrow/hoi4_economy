@@ -50,15 +50,24 @@ class Region:
                 factories * FACTORY_OUTPUT *
                 (mil_constr_bonus + 1)
             )
+            if self.mil_constr_progress > MILITARY_FACTORY_COST:
+                self.military_factories += 1
+                self.mil_constr_progress -= MILITARY_FACTORY_COST
         elif type_of_building == CIVIL_BUILDING:
             self.civil_constr_progress += (
                     factories * FACTORY_OUTPUT *
                     (civil_constr_bonus + 1)
             )
+            if self.civil_constr_progress > FACTORY_COST:
+                self.factories += 1
+                self.civil_constr_progress -= FACTORY_COST
         elif type_of_building == INF_BUILDING:
             self.inf_constr_progress += (
                     factories * FACTORY_OUTPUT *
                     (inf_constr_bonus + 1)
             )
+            if self.inf_constr_progress > INFRASTRUCTURE_COST:
+                self.infrastructure += 1
+                self.inf_constr_progress -= INFRASTRUCTURE_COST
         else:
             raise Exception("Некорректный тип здания для постройки")
