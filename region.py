@@ -50,7 +50,6 @@ class Region:
         else:
             return False
 
-
     def construct(self, factories, type_of_building,
                   civil_constr_bonus=0,
                   mil_constr_bonus=0,
