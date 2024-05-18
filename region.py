@@ -41,19 +41,39 @@ class Region:
             round((1+science_bonus)*self.init_fact_limit, 0)
         )
 
-    def is_on_construction_limit(self):
+    def is_on_construction_limit(self, type_of_building):
         if (
-                self.factories + self.military_factories >=
-                self.factories_limit
+                type_of_building == MILITARY_BUILDING or
+                type_of_building == CIVIL_BUILDING
         ):
-            return True
+            if (
+                    self.factories + self.military_factories >=
+                    self.factories_limit
+            ):
+                return True
+            else:
+                return False
+        elif type_of_building == INF_BUILDING:
+            if self.infrastructure >= self.infrastructure_limit:
+                return True
+            else:
+                return False
         else:
-            return False
+            raise Exception(
+                f"Не найден лимит для здания "
+                f"{type_of_building} в регионе "
+                f"{self.name}")
 
     def construct(self, factories, type_of_building,
                   civil_constr_bonus=0,
                   mil_constr_bonus=0,
                   inf_constr_bonus=0):
+        if self.is_on_construction_limit(type_of_building):
+            raise Exception(
+                f"Нельзя построить больше {type_of_building} "
+                f"в регионе "
+                f"{self.name}."
+            )
         if type_of_building == MILITARY_BUILDING:
             self.mil_constr_progress += (
                 factories * FACTORY_OUTPUT *
