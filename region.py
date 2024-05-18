@@ -41,6 +41,16 @@ class Region:
             round((1+science_bonus)*self.init_fact_limit, 0)
         )
 
+    def is_on_construction_limit(self):
+        if (
+                self.factories + self.military_factories >=
+                self.factories_limit
+        ):
+            return True
+        else:
+            return False
+
+
     def construct(self, factories, type_of_building,
                   civil_constr_bonus=0,
                   mil_constr_bonus=0,
