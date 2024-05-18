@@ -9,6 +9,7 @@ FACTORY_OUTPUT = 5
 MILITARY_FACTORY_OUTPUT = 10
 INFRASTRUCTURE_BONUS = 0.2
 
+# Commands
 ADD_MILITARY_ADVISOR_COMMAND = "military_advisor"
 ADD_CIVIL_ADVISOR_COMMAND = "civil_advisor"
 CHANGE_INDUSTRY_TYPE_COMMAND = "distributed_industry"
@@ -21,6 +22,11 @@ ADD_CONSUMER_GOODS_COMMAND = "add_consumer_goods"
 GET_CIVIL_CONSTR_BONUS_COMMAND = "get_civil_constr_bonus"
 GET_MIL_CONSTR_BONUS_COMMAND = "get_mil_constr_bonus"
 GET_INF_CONSTR_BONUS_COMMAND = "get_inf_constr_bonus"
+
+# Building types
+MILITARY_BUILDING = "mil_fact"
+CIVIL_BUILDING = "civil_fact"
+INF_BUILDING = "infrastructure"
 
 
 conscription = Law()
