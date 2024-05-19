@@ -5,7 +5,7 @@ from constants import *
 
 
 class Test1:
-    name = "Name"
+    name = "Упрощенный Синцзянский"
 
     def __init__(self):
         self.country = Country("Sinkiang")
@@ -40,7 +40,7 @@ class Test1:
         ))
         self.constr365 = 6132
 
-    def check(self):
+    def check(self, text=False):
         for x in range(365):
             self.country.calculate_day()
         # print(self.country.regions[0].civil_constr_progress)
@@ -54,9 +54,11 @@ class Test1:
         ):
             return True
         else:
-            print(
-                f"Целевой результат {self.constr365}.\n"
-                f"Полученный результат "
-                f"{self.country.regions[0].civil_constr_progress}."
-            )
+            if text:
+                print(
+                    f"Результаты теста {self.name}\n"
+                    f"Целевой результат {self.constr365}.\n"
+                    f"Полученный результат "
+                    f"{self.country.regions[0].civil_constr_progress}."
+                )
             return False
