@@ -48,8 +48,9 @@ class Test1:
         # print(self.country.consumer_goods)
         # print(self.country.factories_for_consumers)
         if (
-                self.constr365 ==
+                self.constr365-1 <
                 self.country.regions[0].civil_constr_progress
+                < self.constr365+1
         ):
             return True
         else:
