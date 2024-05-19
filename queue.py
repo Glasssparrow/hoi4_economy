@@ -15,4 +15,3 @@ class Order:
             self.quantity = 0
             empty = True
         return empty
-
