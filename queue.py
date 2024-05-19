@@ -7,3 +7,12 @@ class Order:
         self.target_region_id = None
         self.building_type = building_type
         self.quantity = quantity
+
+    def finish_one(self):
+        empty = False
+        self.quantity -= 1
+        if self.quantity <= 1:
+            self.quantity = 0
+            empty = True
+        return empty
+

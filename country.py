@@ -42,6 +42,7 @@ class Country:
         civil_constr_bonus = self.civil_constr_bonus
         mil_constr_bonus = self.mil_constr_bonus
         inf_constr_bonus = self.inf_constr_bonus
+        empty = []  # Список опустевших заданий на строительство
         while free_factories > 0 and len(self.queue) > 0:
             if free_factories > 15:
                 factories_for_region = 15
@@ -56,6 +57,18 @@ class Country:
                 mil_constr_bonus=mil_constr_bonus,
                 inf_constr_bonus=inf_constr_bonus,
             )
+            # Если строительство завершено, проверяем нет ли в
+            # задании еще зданий, если нет, то добавляем в список
+            # пустых заданий на строительство.
+            if done:
+                order_is_empty = self.regions[queue_position].finish_one()
+                if order_is_empty:
+                    empty.append(queue_position)
+        # Удаляем все пустые задания на строительство
+        if len(empty) > 0:
+            empty.sort()
+            for x in reversed(empty):
+                self.queue.pop(x)
 
     def add_event(self, event):
         self.events.append(event)
