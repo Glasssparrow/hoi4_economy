@@ -51,7 +51,8 @@ class Country:
             else:
                 factories_for_region = free_factories
                 free_factories = 0
-            done = self.regions[self.queue[queue_position]].construct(
+            target_region_id = self.queue[queue_position].target_region_id
+            done = self.regions[target_region_id].construct(
                 factories_for_region,
                 self.queue[queue_position].building_type,
                 civil_constr_bonus=civil_constr_bonus,
