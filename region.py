@@ -26,6 +26,13 @@ class Region:
         self.civil_constr_progress = 0
         self.mil_constr_progress = 0
         self.inf_constr_progress = 0
+        # slots available
+        self.available_for_construction = (
+            self.factories_limit
+            - self.factories
+            - self.military_factories
+        )
+        self.available_for_queue = self.available_for_construction
 
     def add_resources(self, oil, aluminum, rubber,
                       tungsten, steel, chromium):
