@@ -12,6 +12,9 @@ class Law:
         self._default_pos = 0
         self.pos = 0
 
+    def back_to_default(self):
+        self.pos = self._default_pos
+
     def law_up(self):
         if self.pos < len(self.civil_constr):
             self.pos += 1

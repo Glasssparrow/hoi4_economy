@@ -20,6 +20,8 @@ class Country:
         self.economy_law = economy
         self.trade_law = trade
         self.list_of_laws = [conscription, economy, trade]
+        for law in self.list_of_laws:
+            law.back_to_default()
 
         self.constr_tech = 0
         self.industry_tech = 0
