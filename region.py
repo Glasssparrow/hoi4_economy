@@ -26,13 +26,30 @@ class Region:
         self.civil_constr_progress = 0
         self.mil_constr_progress = 0
         self.inf_constr_progress = 0
+        # slots reserver for queue
+        self.slot_for_queue = 0
         # slots available
+        self.available_for_construction = 0
+        self.available_for_queue = 0
+        self._recalculate_available_slots()
+
+    def _recalculate_available_slots(self):
         self.available_for_construction = (
-            self.factories_limit
-            - self.factories
-            - self.military_factories
+                self.factories_limit
+                - self.factories
+                - self.military_factories
         )
-        self.available_for_queue = self.available_for_construction
+        self.available_for_queue = (
+                self.available_for_construction
+                - self.slot_for_queue
+        )
+
+    def _add_queue(self, quantity):
+        self.slot_for_queue += quantity
+        self.available_for_queue -= quantity
+        if self.available_for_queue < 0:
+            raise Exception("Слишком много зданий в очереди "
+                            f"для {self.name}")
 
     def add_resources(self, oil, aluminum, rubber,
                       tungsten, steel, chromium):
@@ -47,6 +64,7 @@ class Region:
         self.factories_limit = (
             round((1+science_bonus)*self.init_fact_limit, 0)
         )
+        self._recalculate_available_slots()
 
     def is_on_construction_limit(self, type_of_building):
         if (
