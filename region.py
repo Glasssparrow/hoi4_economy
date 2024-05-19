@@ -68,6 +68,7 @@ class Region:
                   civil_constr_bonus=0,
                   mil_constr_bonus=0,
                   inf_constr_bonus=0):
+        construction_complete = False
         if self.is_on_construction_limit(type_of_building):
             raise Exception(
                 f"Нельзя построить больше {type_of_building} "
@@ -82,6 +83,7 @@ class Region:
             if self.mil_constr_progress > MILITARY_FACTORY_COST:
                 self.military_factories += 1
                 self.mil_constr_progress -= MILITARY_FACTORY_COST
+                construction_complete = True
         elif type_of_building == CIVIL_BUILDING:
             self.civil_constr_progress += (
                     factories * FACTORY_OUTPUT *
@@ -90,6 +92,7 @@ class Region:
             if self.civil_constr_progress > FACTORY_COST:
                 self.factories += 1
                 self.civil_constr_progress -= FACTORY_COST
+                construction_complete = True
         elif type_of_building == INF_BUILDING:
             self.inf_constr_progress += (
                     factories * FACTORY_OUTPUT *
@@ -98,5 +101,7 @@ class Region:
             if self.inf_constr_progress > INFRASTRUCTURE_COST:
                 self.infrastructure += 1
                 self.inf_constr_progress -= INFRASTRUCTURE_COST
+                construction_complete = True
         else:
             raise Exception("Некорректный тип здания для постройки")
+        return construction_complete

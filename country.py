@@ -42,14 +42,14 @@ class Country:
         civil_constr_bonus = self.civil_constr_bonus
         mil_constr_bonus = self.mil_constr_bonus
         inf_constr_bonus = self.inf_constr_bonus
-        while free_factories > 0 and len(self.queue)>0:
+        while free_factories > 0 and len(self.queue) > 0:
             if free_factories > 15:
                 factories_for_region = 15
                 free_factories += -15
             else:
                 factories_for_region = free_factories
                 free_factories = 0
-            self.regions[self.queue[queue_position]].construct(
+            done = self.regions[self.queue[queue_position]].construct(
                 factories_for_region,
                 self.queue[queue_position].building_type,
                 civil_constr_bonus=civil_constr_bonus,
