@@ -33,7 +33,7 @@ class Country:
         self.factories = 0
         self.mil_factories = 0
         self.factories_available = 0
-        self.consumer_goods = 0
+        self._consumer_goods = 0
 
     def calculate_day(self):
         self._calculate_factories()
@@ -135,13 +135,13 @@ class Country:
             self._constr_bonus += 0.1
 
     def get_consumer_goods(self):
-        cons_goods = self.consumer_goods
+        cons_goods = self._consumer_goods
         for law in self.list_of_laws:
             cons_goods += law.cons_goods[law.pos]
         return cons_goods
 
     def add_consumer_goods(self, consumer_goods_modifier):
-        self.consumer_goods += consumer_goods_modifier
+        self._consumer_goods += consumer_goods_modifier
 
     def _calculate_factories(self):
         civil_fact = 0
