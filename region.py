@@ -78,6 +78,7 @@ class Region:
         if type_of_building == MILITARY_BUILDING:
             self.mil_constr_progress += (
                 factories * FACTORY_OUTPUT *
+                (INFRASTRUCTURE_BONUS * self.infrastructure + 1) *
                 (mil_constr_bonus + 1)
             )
             if self.mil_constr_progress > MILITARY_FACTORY_COST:
@@ -87,6 +88,7 @@ class Region:
         elif type_of_building == CIVIL_BUILDING:
             self.civil_constr_progress += (
                     factories * FACTORY_OUTPUT *
+                    (INFRASTRUCTURE_BONUS * self.infrastructure + 1) *
                     (civil_constr_bonus + 1)
             )
             if self.civil_constr_progress > FACTORY_COST:
@@ -96,6 +98,7 @@ class Region:
         elif type_of_building == INF_BUILDING:
             self.inf_constr_progress += (
                     factories * FACTORY_OUTPUT *
+                    (INFRASTRUCTURE_BONUS * self.infrastructure + 1) *
                     (inf_constr_bonus + 1)
             )
             if self.inf_constr_progress > INFRASTRUCTURE_COST:
