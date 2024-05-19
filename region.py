@@ -1,4 +1,5 @@
 from constants import *
+from math import floor
 
 
 class Region:
@@ -62,7 +63,7 @@ class Region:
 
     def recalculate_factories_limit(self, science_bonus):
         self.factories_limit = (
-            round((1+science_bonus)*self.init_fact_limit, 0)
+            floor((1+science_bonus)*self.init_fact_limit)
         )
         self._recalculate_available_slots()
 
