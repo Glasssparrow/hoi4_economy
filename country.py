@@ -16,6 +16,8 @@ class Country:
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
 
+        # Есть лишь один объект каждого закона.
+        # При каждом создании государства передается ссылка на них.
         self.conscription_law = conscription
         self.economy_law = economy
         self.trade_law = trade
