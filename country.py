@@ -1,4 +1,5 @@
 from constants import conscription, economy, trade
+from math import floor
 
 
 class Country:
@@ -15,6 +16,7 @@ class Country:
         self._inf_constr_bonus = 0
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
+        self._consumer_goods = 0
 
         # Есть лишь один объект каждого закона.
         # При каждом создании государства передается ссылка на них.
@@ -33,7 +35,8 @@ class Country:
         self.factories = 0
         self.mil_factories = 0
         self.factories_available = 0
-        self._consumer_goods = 0
+        self.factories_for_consumers = 0
+        self.consumer_goods = 0
 
     def calculate_day(self):
         self._calculate_factories()
@@ -134,7 +137,7 @@ class Country:
             self.constr_tech += 1
             self._constr_bonus += 0.1
 
-    def get_consumer_goods(self):
+    def _get_consumer_goods(self):
         cons_goods = self._consumer_goods
         for law in self.list_of_laws:
             cons_goods += law.cons_goods[law.pos]
@@ -149,8 +152,12 @@ class Country:
         for region in self.regions:
             civil_fact += region.factories
             mil_fact += region.military_factories
+        self.consumer_goods = self._get_consumer_goods()
+        self.factories_for_consumers = floor(
+                (civil_fact + mil_fact) * self._get_consumer_goods()
+        )
         factories_available = (
-            civil_fact - (civil_fact+mil_fact)*self.get_consumer_goods()
+            civil_fact - self.factories_for_consumers
         )
         self.factories = civil_fact
         self.mil_factories = mil_fact
