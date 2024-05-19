@@ -38,12 +38,13 @@ class Country:
     def calculate_day(self):
         self._calculate_factories()
         free_factories = self.factories_available
-        queue_position = 0
+        queue_position = -1
         civil_constr_bonus = self.civil_constr_bonus
         mil_constr_bonus = self.mil_constr_bonus
         inf_constr_bonus = self.inf_constr_bonus
         empty = []  # Список опустевших заданий на строительство
-        while free_factories > 0 and len(self.queue) > 0:
+        while free_factories > 0 and queue_position < len(self.queue):
+            queue_position += 1
             if free_factories > 15:
                 factories_for_region = 15
                 free_factories += -15
