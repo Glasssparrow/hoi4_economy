@@ -29,9 +29,12 @@ class Region:
         self.inf_constr_progress = 0
         # slots reserver for queue
         self.slot_for_queue = 0
+        self.infrastructure_queue = 0
         # slots available
         self.available_for_construction = 0
         self.available_for_queue = 0
+        self.available_for_infrastructure = 0
+        self.available_for_infrastructure_queue = 0
         self._recalculate_available_slots()
 
     def _recalculate_available_slots(self):
@@ -43,6 +46,14 @@ class Region:
         self.available_for_queue = (
                 self.available_for_construction
                 - self.slot_for_queue
+        )
+        self.available_for_infrastructure = (
+            self.infrastructure
+            - self.infrastructure_queue
+        )
+        self.available_for_infrastructure_queue = (
+            self.available_for_infrastructure
+            - self.infrastructure_queue
         )
 
     def _add_queue(self, quantity):
