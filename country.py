@@ -1,4 +1,5 @@
-from constants import conscription, economy, trade
+from constants import (
+    get_economy_law, get_trade_law, get_conscription_law)
 from math import floor
 
 
@@ -18,14 +19,12 @@ class Country:
         self.factory_limit_bonus = 0
         self._consumer_goods = 0
 
-        # Есть лишь один объект каждого закона.
-        # При каждом создании государства передается ссылка на них.
-        self.conscription_law = conscription
-        self.economy_law = economy
-        self.trade_law = trade
-        self.list_of_laws = [conscription, economy, trade]
-        for law in self.list_of_laws:
-            law.back_to_default()
+        self.conscription_law = get_conscription_law()
+        self.economy_law = get_economy_law()
+        self.trade_law = get_trade_law()
+        self.list_of_laws = [
+            self.conscription_law, self.economy_law, self.trade_law
+        ]
 
         self.constr_tech = 0
         self.industry_tech = 0
