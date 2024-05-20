@@ -11,65 +11,84 @@ INFRASTRUCTURE_BONUS = 0.2
 
 # building orders
 BUILD_CIVIL_FACTORY = [
-    "build_civil_factory"
+    "build_civil_factory",
+    "построить_гражданскую_фабрику",
 ]
 BUILD_MIL_FACTORY = [
-    "build_mil_factory"
+    "build_mil_factory",
+    "построить_военный_завод",
 ]
 BUILD_INFRASTRUCTURE = [
-    "build_infrastructure"
+    "build_infrastructure",
+    "построить_инфраструктуру",
 ]
 
 # politics orders
 ADD_MILITARY_ADVISOR_COMMAND = [
-    "military_advisor"
+    "military_advisor",
+    "добавить_военного_советника",
 ]
 ADD_CIVIL_ADVISOR_COMMAND = [
-    "civil_advisor"
+    "civil_advisor",
+    "добавить_гражданского_советника",
 ]
 CHANGE_INDUSTRY_TYPE_COMMAND = [
-    "distributed_industry"
+    "distributed_industry",
+    "переключиться_на_распределенную_промышленность"
 ]
 UPGRADE_INDUSTRY_TECH_COMMAND = [
-    "industry_tech"
+    "industry_tech",
+    "изучить_технологию_промышленности"
 ]
 UPGRADE_CONSTRUCTION_TECH_COMMAND = [
-    "construction_tech"
+    "construction_tech",
+    "изучить_технологию_строительства"
 ]
 PUSH_CONSCRIPTION_COMMAND = [
-    "push_conscription"
+    "push_conscription",
+    "продвинуть_призыв",
 ]
 PUSH_TRADE_COMMAND = [
-    "push_trade"
+    "push_trade",
+    "продвинуть_торговлю",
 ]
 PUSH_ECONOMY_COMMAND = [
-    "push_economy"
+    "push_economy",
+    "продвинуть_экономику",
 ]
 PULL_CONSCRIPTION_COMMAND = [
-    "pull_conscription"
+    "pull_conscription",
+    "отодвинуть_призыв",
 ]
 PULL_TRADE_COMMAND = [
-    "pull_trade"
+    "pull_trade",
+    "отодвинуть_торговлю",
 ]
 PULL_ECONOMY_COMMAND = [
-    "pull_economy"
+    "pull_economy",
+    "отодвинуть_экономику",
 ]
 
 ADD_CONSTR_BONUS_COMMAND = [
-    "add_constr_bonus"
+    "add_constr_bonus",
+    "добавить_бонус_строительства",
 ]
 ADD_CIVIL_CONSTR_BONUS_COMMAND = [
-    "add_civil_constr_bonus"
+    "add_civil_constr_bonus",
+    "добавить_бонус_гражданского_строительства",
 ]
 ADD_MIL_CONSTR_BONUS_COMMAND = [
-    "add_mil_constr_bonus"
+    "add_mil_constr_bonus",
+    "добавить_бонус_военного_строительства",
 ]
 ADD_INF_CONSTR_BONUS_COMMAND = [
-    "add_inf_constr_bonus"
+    "add_inf_constr_bonus",
+    "добавить_бонус_строительства_инфраструктуры",
 ]
 
 ADD_CONSUMER_GOODS_COMMAND = [
-    "add_consumer_goods"
+    "add_consumer_goods",
+    "добавить_товары_народного_потребления",
 ]
 
 # Building types
