@@ -26,10 +26,13 @@ PUSH_ECONOMY_COMMAND = "push_economy"
 PULL_CONSCRIPTION_COMMAND = "pull_conscription"
 PULL_TRADE_COMMAND = "pull_trade"
 PULL_ECONOMY_COMMAND = "pull_economy"
+
+ADD_CONSTR_BONUS_COMMAND = "add_constr_bonus"
+ADD_CIVIL_CONSTR_BONUS_COMMAND = "add_civil_constr_bonus"
+ADD_MIL_CONSTR_BONUS_COMMAND = "add_mil_constr_bonus"
+ADD_INF_CONSTR_BONUS_COMMAND = "add_inf_constr_bonus"
+
 ADD_CONSUMER_GOODS_COMMAND = "add_consumer_goods"
-GET_CIVIL_CONSTR_BONUS_COMMAND = "get_civil_constr_bonus"
-GET_MIL_CONSTR_BONUS_COMMAND = "get_mil_constr_bonus"
-GET_INF_CONSTR_BONUS_COMMAND = "get_inf_constr_bonus"
 
 # Building types
 MILITARY_BUILDING = "mil_fact"

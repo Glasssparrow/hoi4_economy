@@ -49,12 +49,14 @@ class Event:
             owner.move_economy(+1)
         elif self.order[1] == PULL_ECONOMY_COMMAND:
             owner.move_economy(-1)
-        elif self.order[1] == GET_CIVIL_CONSTR_BONUS_COMMAND:
-            pass
-        elif self.order[1] == GET_MIL_CONSTR_BONUS_COMMAND:
-            pass
-        elif self.order[1] == GET_INF_CONSTR_BONUS_COMMAND:
-            pass
+        elif self.order[1] == ADD_CONSTR_BONUS_COMMAND:
+            owner.add_construction_bonus(self.order[2])
+        elif self.order[1] == ADD_CIVIL_CONSTR_BONUS_COMMAND:
+            owner.add_civil_construction_bonus(self.order[2])
+        elif self.order[1] == ADD_MIL_CONSTR_BONUS_COMMAND:
+            owner.add_mil_construction_bonus(self.order[2])
+        elif self.order[1] == ADD_INF_CONSTR_BONUS_COMMAND:
+            owner.add_inf_construction_bonus(self.order[2])
         elif self.order[1] == ADD_CONSUMER_GOODS_COMMAND:
             pass
         else:
