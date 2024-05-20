@@ -17,6 +17,9 @@ class Test4:
         self.country.add_event(Event(
             f"0 {BUILD_CIVIL_FACTORY} Bourgogne 4"
         ))
+        self.country.add_event(Event(
+            f"365 {ADD_CIVIL_ADVISOR_COMMAND}"
+        ))
         self.country.preparations()
         self.country.move_trade(+1)
         self.country.move_trade(+1)
@@ -43,7 +46,6 @@ class Test4:
         no_problems = True
         for day in range(731):
             if day == 365:
-                self.country.add_civil_advisor()
                 self.country.move_economy(+1)
                 self.country.move_economy(+1)
             if day in self.days.keys():
@@ -86,5 +88,5 @@ class Test4:
                             f"{self.country.mil_factories}, "
                             f"{self.country.shipyards})."
                         )
-            self.country.calculate_day()
+            self.country.calculate_day(day)
         return no_problems

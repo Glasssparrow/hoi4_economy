@@ -28,9 +28,9 @@ class Event:
                 quantity=int(self.order[3])
             ))
         elif self.order[1] == ADD_MILITARY_ADVISOR_COMMAND:
-            pass
+            owner.add_military_advisor()
         elif self.order[1] == ADD_CIVIL_ADVISOR_COMMAND:
-            pass
+            owner.add_civil_advisor()
         elif self.order[1] == CHANGE_INDUSTRY_TYPE_COMMAND:
             pass
         elif self.order[1] == UPGRADE_INDUSTRY_TECH_COMMAND:
