@@ -66,7 +66,7 @@ class Country:
             # задании еще зданий, если нет, то добавляем в список
             # пустых заданий на строительство.
             if done:
-                order_is_empty = self.regions[queue_position].finish_one()
+                order_is_empty = self.queue[queue_position].finish_one()
                 if order_is_empty:
                     empty.append(queue_position)
         # Удаляем все пустые задания на строительство
