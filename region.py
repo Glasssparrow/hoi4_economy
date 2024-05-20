@@ -6,7 +6,7 @@ class Region:
 
     def __init__(self, name,
                  max_factories, infrastructure,
-                 factories, military_factories):
+                 factories, military_factories, shipyards=0):
         self.name = name
         # limits
         self.factories_limit = max_factories
@@ -16,6 +16,7 @@ class Region:
         self.infrastructure = infrastructure
         self.factories = factories
         self.military_factories = military_factories
+        self.shipyards = shipyards
         # resources
         self.oil = 0
         self.aluminum = 0
