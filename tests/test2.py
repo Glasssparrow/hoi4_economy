@@ -111,11 +111,21 @@ country.add_region(Region(
     2, 1, 0
 ))
 
-# country.add_order(Order(
-#     region_name="Dabancheng",
-#     building_type=CIVIL_BUILDING,
-#     quantity=1,
-# ))
+country.add_order(Order(
+    region_name="Loire",
+    building_type=CIVIL_BUILDING,
+    quantity=4,
+))
+country.add_order(Order(
+    region_name="Centre",
+    building_type=CIVIL_BUILDING,
+    quantity=3,
+))
+country.add_order(Order(
+    region_name="Bourgogne",
+    building_type=CIVIL_BUILDING,
+    quantity=4,
+))
 
 country.preparations()
 
