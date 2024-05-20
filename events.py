@@ -3,8 +3,7 @@ from constants import *
 
 class Event:
 
-    def __init__(self, date, order_text):
-        self.date = date
+    def __init__(self, order_text):
         self.order = order_text
 
     def activate(self, owner):
@@ -26,4 +25,5 @@ class Event:
             raise Exception(f"{order} не корректное событие!")
 
     def _order_from_text(self):
-        return [self.order, self.order]
+        order = self.order.rstrip()
+        return order
