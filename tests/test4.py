@@ -17,6 +17,14 @@ class Test4:
         self.country.add_event(Event(
             f"0 {BUILD_CIVIL_FACTORY} Bourgogne 4"
         ))
+
+        self.country.add_event(Event(
+            f"0 {PUSH_TRADE_COMMAND}"
+        ))
+        self.country.add_event(Event(
+            f"0 {PUSH_TRADE_COMMAND}"
+        ))
+
         self.country.add_event(Event(
             f"365 {ADD_CIVIL_ADVISOR_COMMAND}"
         ))
@@ -27,8 +35,6 @@ class Test4:
             f"365 {PUSH_ECONOMY_COMMAND}"
         ))
         self.country.preparations()
-        self.country.move_trade(+1)
-        self.country.move_trade(+1)
         # Капитан индустрии + частичная мобилизация 1 января 1937
         self.days = {
             0: (0, 0, 0,),  # старт
