@@ -9,13 +9,13 @@ class Test4:
     def __init__(self):
         self.country = get_france()
         self.country.add_event(Event(
-            f"{BUILD_CIVIL_FACTORY} 0 Loire 4"
+            f"0 {BUILD_CIVIL_FACTORY} Loire 4"
         ))
         self.country.add_event(Event(
-            f"{BUILD_CIVIL_FACTORY} 0 Centre 3"
+            f"0 {BUILD_CIVIL_FACTORY} Centre 3"
         ))
         self.country.add_event(Event(
-            f"{BUILD_CIVIL_FACTORY} 0 Bourgogne 4"
+            f"0 {BUILD_CIVIL_FACTORY} Bourgogne 4"
         ))
         self.country.preparations()
         self.country.move_trade(+1)
