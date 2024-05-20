@@ -1,5 +1,5 @@
 from tests.test1 import Test1
-from tests.test3 import Test3
+from tests.test2 import Test3
 
 
 # Печатать ли результаты
