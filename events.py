@@ -6,26 +6,30 @@ class Event:
 
     def __init__(self, order_text):
         self.order = self._order_from_text(order_text)
+        self.date = 0
 
     def activate(self, owner):
         if self.order[0] == BUILD_CIVIL_FACTORY:
             owner.add_order(Order(
-                region_name=self.order[1],
+                region_name=self.order[2],
                 building_type=CIVIL_BUILDING,
-                quantity=int(self.order[2])
+                quantity=int(self.order[3])
             ))
+            self.date = int(self.order[1])
         elif self.order[0] == BUILD_MIL_FACTORY:
             owner.add_order(Order(
-                region_name=self.order[1],
+                region_name=self.order[2],
                 building_type=MILITARY_BUILDING,
-                quantity=int(self.order[2])
+                quantity=int(self.order[3])
             ))
+            self.date = int(self.order[1])
         elif self.order[0] == BUILD_INFRASTRUCTURE:
             owner.add_order(Order(
-                region_name=self.order[1],
+                region_name=self.order[2],
                 building_type=INF_BUILDING,
-                quantity=int(self.order[2])
+                quantity=int(self.order[3])
             ))
+            self.date = int(self.order[1])
         elif self.order[0] == ADD_MILITARY_ADVISOR_COMMAND:
             pass
         elif self.order[0] == ADD_CIVIL_ADVISOR_COMMAND:
