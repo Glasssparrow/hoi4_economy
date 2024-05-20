@@ -135,11 +135,17 @@ class Test2:
 
     def __init__(self):
         self.country = country
-        self.factories365 = 6132
+        self.factories365 = 32
+        self.factories730 = 5555
 
     def check(self, text=False):
+        result1, result2 = 0, 0  # Переменные для записи результата
         for x in range(365):
             self.country.calculate_day()
+            result1 = self.country.factories
+        for y in range(365):
+            self.country.calculate_day()
+            result2 = self.country.factories
         if (
                 self.factories365 == self.country.factories
         ):
@@ -148,8 +154,11 @@ class Test2:
             if text:
                 print(
                     f"Результаты теста {self.name}\n"
-                    f"Целевой результат {self.factories365}.\n"
-                    f"Полученный результат "
-                    f"{self.country.factories}."
+                    f"Целевой результат:"
+                    f"1 год - {self.factories365}, "
+                    f"2 года - {self.factories730}.\n"
+                    f"Полученный результат: "
+                    f"1 год - {result1}, "
+                    f"2 года - {result2}."
                 )
             return False
