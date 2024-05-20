@@ -1,4 +1,3 @@
-from queue import Order
 from constants import *
 
 
