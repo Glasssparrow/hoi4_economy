@@ -142,4 +142,3 @@ def get_france_for_tests_2_and_3():
 
     country.preparations()
     return country
-
