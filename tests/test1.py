@@ -35,6 +35,8 @@ country.add_order(Order(
     quantity=1,
 ))
 
+country.preparations()
+
 
 class Test1:
     name = "Упрощенный Синцзянский"

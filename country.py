@@ -83,6 +83,7 @@ class Country:
         self.events.append(event)
 
     def preparations(self):
+        self._calculate_factories()
         for cycle in range(len(self.events)-1):
             for i in range(len(self.events)-1):
                 if self.events[i].date > self.events[i+1].date:
