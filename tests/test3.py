@@ -159,6 +159,11 @@ class Test3:
             273: (4198, 3717, 0),  # 1 октября
             304: (7128, 4302, 0),  # 1 ноября
             334: (9963, 4869, 0),  # 1 декабря
+            337: (10246, 4926, 0),  # 4 декабря
+            339: (10435, 4964, 0),  # 6 декабря
+            341: (10624, 5002, 0),  # 8 декабря
+            343: (13, 5040, 0),  # 10 декабря
+            353: (958, 5229, 0),  # 20 декабря
             365: (2092, 5455, 0),  # 1 января
         }
 
@@ -168,15 +173,15 @@ class Test3:
         no_problems = True
         for day in range(730):
             if day in self.days.keys():
-                print("День #", day)
-                print(self.days[day][0],
-                      self.days[day][1],
-                      self.days[day][2],
-                      " : ",
-                      floor(self.country.regions[8].civil_constr_progress),
-                      floor(self.country.regions[10].civil_constr_progress),
-                      floor(self.country.regions[5].civil_constr_progress),
-                      )
+                # print("День #", day)
+                # print(self.days[day][0],
+                #       self.days[day][1],
+                #       self.days[day][2],
+                #       " : ",
+                #       floor(self.country.regions[8].civil_constr_progress),
+                #       floor(self.country.regions[10].civil_constr_progress),
+                #       floor(self.country.regions[5].civil_constr_progress),
+                #       )
 
                 no_problem_in_the_day = True
                 for x in range(3):
@@ -195,7 +200,7 @@ class Test3:
                     if text:
                         print(
                             f"День {day} не совпадает. "
-                            f"Ожидаем/получили [{self.days[day][0]}, " 
+                            f"Ожидаем/получили [{self.days[day][0]}, "
                             f"{self.days[day][1]}, "
                             f"{self.days[day][2]}]/"
                             f"{for_print}. "
