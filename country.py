@@ -106,7 +106,6 @@ class Country:
         for number in reversed(done_events):
             self.events.pop(number)
 
-
     def add_order(self, order):
         for i, region in enumerate(self.regions):
             if order.target_region == region.name:
