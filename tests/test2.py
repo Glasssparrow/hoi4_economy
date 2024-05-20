@@ -136,7 +136,8 @@ class Test2:
     def __init__(self):
         self.country = country
         self.factories365 = 32
-        self.factories730 = 5555
+        self.factories730 = 36
+        self.bourgogne730 = 8643
 
     def check(self, text=False):
         result1, result2 = 0, 0  # Переменные для записи результата
@@ -156,9 +157,13 @@ class Test2:
                     f"Результаты теста {self.name}\n"
                     f"Целевой результат:"
                     f"1 год - {self.factories365}, "
-                    f"2 года - {self.factories730}.\n"
+                    f"2 года - {self.factories730}, Bourgogne - "
+                    f"{self.bourgogne730} прогресса.\n"
                     f"Полученный результат: "
                     f"1 год - {result1}, "
-                    f"2 года - {result2}."
+                    f"2 года - {result2}, "
+                    f"{self.country.regions[5].name} - "
+                    f"{self.country.regions[5].civil_constr_progress} "
+                    f"прогресса."
                 )
             return False
