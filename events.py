@@ -58,7 +58,7 @@ class Event:
         elif self.order[1] == ADD_INF_CONSTR_BONUS_COMMAND:
             owner.add_inf_construction_bonus(self.order[2])
         elif self.order[1] == ADD_CONSUMER_GOODS_COMMAND:
-            pass
+            owner.add_consumer_goods(self.order[2])
         else:
             raise Exception(f"{self.order} не корректное событие!")
 
