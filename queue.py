@@ -11,7 +11,7 @@ class Order:
     def finish_one(self):
         empty = False
         self.quantity -= 1
-        if self.quantity <= 1:
+        if self.quantity <= 0:
             self.quantity = 0
             empty = True
         return empty
