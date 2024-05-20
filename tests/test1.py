@@ -2,6 +2,7 @@ from region import Region
 from queue import Order
 from country import Country
 from constants import *
+from .common import floor
 
 
 country = Country("Sinkiang")
@@ -53,9 +54,8 @@ class Test1:
         # print(self.country.consumer_goods)
         # print(self.country.factories_for_consumers)
         if (
-                self.constr365-0.5 <
-                self.country.regions[0].civil_constr_progress
-                < self.constr365+0.5
+                self.constr365 ==
+                floor(self.country.regions[0].civil_constr_progress)
         ):
             return True
         else:
