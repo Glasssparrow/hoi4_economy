@@ -152,22 +152,31 @@ class Test3:
             59: (5575, 743, 0),  # 1 марта
             90: (8505, 1134, 0),  # 1 апреля
             120: (540, 1512, 0),  # 1 мая
+            151: (3469, 1902, 0),  # 1 июня
+            181: (6304, 2280, 0),  # 1 июля
+            212: (9234, 2671, 0),  # 1 августа
+            243: (1363, 3150, 0),  # 1 сентября
+            273: (4198, 3717, 0),  # 1 октября
+            304: (7128, 4302, 0),  # 1 ноября
+            334: (9963, 4869, 0),  # 1 декабря
+            365: (2092, 5455, 0),  # 1 января
         }
 
     def check(self, text=False):
         region_ids = [8, 10, 5]
         regions = self.country.regions
         no_problems = True
-        for day in range(365):
+        for day in range(730):
             if day in self.days.keys():
-                # print("День #", day)
-                # print(floor(self.country.regions[8].civil_constr_progress),
-                #       floor(self.country.regions[10].civil_constr_progress),
-                #       floor(self.country.regions[5].civil_constr_progress),
-                #       " : ",
-                #       self.days[day][0],
-                #       self.days[day][1],
-                #       self.days[day][2])
+                print("День #", day)
+                print(self.days[day][0],
+                      self.days[day][1],
+                      self.days[day][2],
+                      " : ",
+                      floor(self.country.regions[8].civil_constr_progress),
+                      floor(self.country.regions[10].civil_constr_progress),
+                      floor(self.country.regions[5].civil_constr_progress),
+                      )
 
                 no_problem_in_the_day = True
                 for x in range(3):
@@ -177,19 +186,19 @@ class Test3:
                     ):
                         no_problems = False
                         no_problem_in_the_day = False
-                    if not no_problem_in_the_day:
-                        for_print = []
-                        for i in region_ids:
-                            for_print.append(floor(
-                                regions[i].civil_constr_progress)
-                            )
-                        if text:
-                            print(
-                                f"День {day} не совпадает. "
-                                f"Ожидаем/получили [{self.days[day][0]}, " 
-                                f"{self.days[day][1]}, "
-                                f"{self.days[day][2]}]/"
-                                f"{for_print}. "
-                            )
+                if not no_problem_in_the_day:
+                    for_print = []
+                    for i in region_ids:
+                        for_print.append(floor(
+                            regions[i].civil_constr_progress)
+                        )
+                    if text:
+                        print(
+                            f"День {day} не совпадает. "
+                            f"Ожидаем/получили [{self.days[day][0]}, " 
+                            f"{self.days[day][1]}, "
+                            f"{self.days[day][2]}]/"
+                            f"{for_print}. "
+                        )
             self.country.calculate_day()
         return no_problems
