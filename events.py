@@ -50,15 +50,20 @@ class Event:
         elif self.order[1] in PULL_ECONOMY_COMMAND:
             owner.move_economy(-1)
         elif self.order[1] in ADD_CONSTR_BONUS_COMMAND:
-            owner.add_construction_bonus(self.order[2])
+            owner.add_construction_bonus(
+                float(self.order[2]))
         elif self.order[1] in ADD_CIVIL_CONSTR_BONUS_COMMAND:
-            owner.add_civil_construction_bonus(self.order[2])
+            owner.add_civil_construction_bonus(
+                float(self.order[2]))
         elif self.order[1] in ADD_MIL_CONSTR_BONUS_COMMAND:
-            owner.add_mil_construction_bonus(self.order[2])
+            owner.add_mil_construction_bonus(
+                float(self.order[2]))
         elif self.order[1] in ADD_INF_CONSTR_BONUS_COMMAND:
-            owner.add_inf_construction_bonus(self.order[2])
+            owner.add_inf_construction_bonus(
+                float(self.order[2]))
         elif self.order[1] in ADD_CONSUMER_GOODS_COMMAND:
-            owner.add_consumer_goods(self.order[2])
+            owner.add_consumer_goods(
+                float(self.order[2]))
         else:
             raise Exception(f"{self.order} не корректное событие!")
 
