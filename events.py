@@ -9,6 +9,10 @@ class Event:
     def activate(self, owner):
         order = self._order_from_text()
         if order[0] not in [
+            BUILD_CIVIL_FACTORY,
+            BUILD_MIL_FACTORY,
+            BUILD_INFRASTRUCTURE,
+
             ADD_MILITARY_ADVISOR_COMMAND,
             ADD_CIVIL_ADVISOR_COMMAND,
             CHANGE_INDUSTRY_TYPE_COMMAND,
@@ -23,6 +27,7 @@ class Event:
             ADD_CONSUMER_GOODS_COMMAND,
         ]:
             raise Exception(f"{order} не корректное событие!")
+        return order
 
     def _order_from_text(self):
         order = self.order.rstrip()

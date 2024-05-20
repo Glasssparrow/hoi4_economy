@@ -9,6 +9,11 @@ FACTORY_OUTPUT = 5
 MILITARY_FACTORY_OUTPUT = 10
 INFRASTRUCTURE_BONUS = 0.2
 
+# building orders
+BUILD_CIVIL_FACTORY = "build_civil_factory"
+BUILD_MIL_FACTORY = "build_mil_factory"
+BUILD_INFRASTRUCTURE = "build_infrastructure"
+
 # Commands
 ADD_MILITARY_ADVISOR_COMMAND = "military_advisor"
 ADD_CIVIL_ADVISOR_COMMAND = "civil_advisor"
