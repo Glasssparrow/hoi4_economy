@@ -37,12 +37,18 @@ class Event:
             owner.upgrade_industry_tech()
         elif self.order[1] == UPGRADE_CONSTRUCTION_TECH_COMMAND:
             owner.upgrade_construction_tech()
-        elif self.order[1] == CHANGE_CONSCRIPTION_COMMAND:
-            pass
-        elif self.order[1] == CHANGE_TRADE_COMMAND:
-            pass
-        elif self.order[1] == CHANGE_ECONOMY_COMMAND:
-            pass
+        elif self.order[1] == PUSH_CONSCRIPTION_COMMAND:
+            owner.move_conscription(+1)
+        elif self.order[1] == PULL_CONSCRIPTION_COMMAND:
+            owner.move_conscription(-1)
+        elif self.order[1] == PUSH_TRADE_COMMAND:
+            owner.move_trade(+1)
+        elif self.order[1] == PULL_TRADE_COMMAND:
+            owner.move_trade(-1)
+        elif self.order[1] == PUSH_ECONOMY_COMMAND:
+            owner.move_economy(+1)
+        elif self.order[1] == PULL_ECONOMY_COMMAND:
+            owner.move_economy(-1)
         elif self.order[1] == GET_CIVIL_CONSTR_BONUS_COMMAND:
             pass
         elif self.order[1] == GET_MIL_CONSTR_BONUS_COMMAND:
