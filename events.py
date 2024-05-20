@@ -4,11 +4,10 @@ from constants import *
 class Event:
 
     def __init__(self, order_text):
-        self.order = order_text
+        self.order = self._order_from_text(order_text)
 
     def activate(self, owner):
-        order = self._order_from_text()
-        if order[0] not in [
+        if self.order[0] not in [
             BUILD_CIVIL_FACTORY,
             BUILD_MIL_FACTORY,
             BUILD_INFRASTRUCTURE,
@@ -26,9 +25,10 @@ class Event:
             GET_INF_CONSTR_BONUS_COMMAND,
             ADD_CONSUMER_GOODS_COMMAND,
         ]:
-            raise Exception(f"{order} не корректное событие!")
-        return order
+            raise Exception(f"{self.order} не корректное событие!")
+        return self.order
 
-    def _order_from_text(self):
-        order = self.order.rstrip()
+    @staticmethod
+    def _order_from_text(order_text):
+        order = order_text.rsplit()
         return order
