@@ -29,7 +29,7 @@ class Region:
         self.inf_constr_progress = 0
         # slots reserver for queue
         self.slot_for_queue = 0
-        self.infrastructure_queue = 0
+        self.infrastructure_queue_slots = 0
         # slots available
         self.available_for_construction = 0
         self.available_for_queue = 0
@@ -49,19 +49,30 @@ class Region:
         )
         self.available_for_infrastructure = (
             self.infrastructure
-            - self.infrastructure_queue
+            - self.infrastructure_queue_slots
         )
         self.available_for_infrastructure_queue = (
             self.available_for_infrastructure
-            - self.infrastructure_queue
+            - self.infrastructure_queue_slots
         )
 
-    def _add_queue(self, quantity):
-        self.slot_for_queue += quantity
-        self.available_for_queue -= quantity
-        if self.available_for_queue < 0:
-            raise Exception("Слишком много зданий в очереди "
-                            f"для {self.name}")
+    def add_queue(self, quantity, building_type):
+        if building_type in [MILITARY_BUILDING, CIVIL_BUILDING]:
+            self.slot_for_queue += quantity
+            self.available_for_queue -= quantity
+            if self.available_for_queue < 0:
+                raise Exception(
+                    "Слишком много зданий в очереди для "
+                    f"фабрик/военных_заводов региона {self.name}"
+                )
+        elif building_type == INF_BUILDING:
+            self.infrastructure_queue_slots += quantity
+            self.available_for_infrastructure_queue -= quantity
+            if self.available_for_infrastructure_queue < 0:
+                raise Exception(
+                    "Слишком много инфраструктуры в очереди для "
+                    f"региона {self.name}."
+                )
 
     def add_resources(self, oil, aluminum, rubber,
                       tungsten, steel, chromium):
