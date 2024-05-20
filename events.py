@@ -1,4 +1,5 @@
 from constants import *
+from queue import Order
 
 
 class Event:
@@ -8,11 +9,23 @@ class Event:
 
     def activate(self, owner):
         if self.order[0] == BUILD_CIVIL_FACTORY:
-            pass
+            owner.add_order(Order(
+                region_name=self.order[1],
+                building_type=CIVIL_BUILDING,
+                quantity=int(self.order[2])
+            ))
         elif self.order[0] == BUILD_MIL_FACTORY:
-            pass
+            owner.add_order(Order(
+                region_name=self.order[1],
+                building_type=MILITARY_BUILDING,
+                quantity=int(self.order[2])
+            ))
         elif self.order[0] == BUILD_INFRASTRUCTURE:
-            pass
+            owner.add_order(Order(
+                region_name=self.order[1],
+                building_type=INF_BUILDING,
+                quantity=int(self.order[2])
+            ))
         elif self.order[0] == ADD_MILITARY_ADVISOR_COMMAND:
             pass
         elif self.order[0] == ADD_CIVIL_ADVISOR_COMMAND:
