@@ -20,6 +20,12 @@ class Test4:
         self.country.add_event(Event(
             f"365 {ADD_CIVIL_ADVISOR_COMMAND}"
         ))
+        self.country.add_event(Event(
+            f"365 {PUSH_ECONOMY_COMMAND}"
+        ))
+        self.country.add_event(Event(
+            f"365 {PUSH_ECONOMY_COMMAND}"
+        ))
         self.country.preparations()
         self.country.move_trade(+1)
         self.country.move_trade(+1)
@@ -45,9 +51,6 @@ class Test4:
         regions = self.country.regions
         no_problems = True
         for day in range(731):
-            if day == 365:
-                self.country.move_economy(+1)
-                self.country.move_economy(+1)
             if day in self.days.keys():
                 no_problem_in_the_day = True
                 # Проверяем прогресс строительства в 3 выбранных регионах.
