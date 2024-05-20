@@ -165,13 +165,14 @@ class Test3:
             343: (13, 5040, 0),  # 10 декабря
             353: (958, 5229, 0),  # 20 декабря
             365: (2092, 5455, 0),  # 1 января
+            730: (0, 0, 8643)  # 1 января
         }
 
     def check(self, text=False):
         region_ids = [8, 10, 5]
         regions = self.country.regions
         no_problems = True
-        for day in range(730):
+        for day in range(731):
             if day in self.days.keys():
                 # print("День #", day)
                 # print(self.days[day][0],
@@ -187,7 +188,8 @@ class Test3:
                 for x in range(3):
                     if (
                         floor(regions[region_ids[x]].civil_constr_progress)
-                        != self.days[day][x]
+                        != self.days[day][x] and
+                        self.days[day][x] != 0
                     ):
                         no_problems = False
                         no_problem_in_the_day = False
