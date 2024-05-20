@@ -46,7 +46,11 @@ class Country:
         mil_constr_bonus = self.mil_constr_bonus
         inf_constr_bonus = self.inf_constr_bonus
         empty = []  # Список опустевших заданий на строительство
-        while free_factories > 0 and queue_position < len(self.queue):
+        while (
+                free_factories > 0 and
+                queue_position < len(self.queue) and
+                len(self.queue) > 0
+        ):
             queue_position += 1
             if free_factories > 15:
                 factories_for_region = 15
