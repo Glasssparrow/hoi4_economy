@@ -14,7 +14,7 @@ BUILD_CIVIL_FACTORY = "build_civil_factory"
 BUILD_MIL_FACTORY = "build_mil_factory"
 BUILD_INFRASTRUCTURE = "build_infrastructure"
 
-# Commands
+# politics orders
 ADD_MILITARY_ADVISOR_COMMAND = "military_advisor"
 ADD_CIVIL_ADVISOR_COMMAND = "civil_advisor"
 CHANGE_INDUSTRY_TYPE_COMMAND = "distributed_industry"
