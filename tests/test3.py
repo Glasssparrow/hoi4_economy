@@ -84,5 +84,5 @@ class Test3:
                             f"{self.country.mil_factories}, "
                             f"{self.country.shipyards})."
                         )
-            self.country.calculate_day()
+            self.country.calculate_day(day)
         return no_problems

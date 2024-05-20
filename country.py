@@ -41,8 +41,9 @@ class Country:
         self.factories_for_consumers = 0
         self.consumer_goods = 0
 
-    def calculate_day(self):
+    def calculate_day(self, day):
         self._calculate_factories()
+        self.activate_events(day)
         free_factories = self.factories_available
         queue_position = -1
         civil_constr_bonus = self.civil_constr_bonus
@@ -95,6 +96,16 @@ class Country:
         while len(self.events) > 0 and self.events[0].date == 0:
             self.events[0].activate(self)
             self.events.pop(0)
+
+    def activate_events(self, day):
+        done_events = []
+        for number, event in enumerate(self.events):
+            if event.date == day:
+                event.activate(self)
+                done_events.append(number)
+        for number in reversed(done_events):
+            self.events.pop(number)
+
 
     def add_order(self, order):
         for i, region in enumerate(self.regions):
