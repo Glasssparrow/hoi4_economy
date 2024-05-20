@@ -10,29 +10,67 @@ MILITARY_FACTORY_OUTPUT = 10
 INFRASTRUCTURE_BONUS = 0.2
 
 # building orders
-BUILD_CIVIL_FACTORY = "build_civil_factory"
-BUILD_MIL_FACTORY = "build_mil_factory"
-BUILD_INFRASTRUCTURE = "build_infrastructure"
+BUILD_CIVIL_FACTORY = [
+    "build_civil_factory"
+]
+BUILD_MIL_FACTORY = [
+    "build_mil_factory"
+]
+BUILD_INFRASTRUCTURE = [
+    "build_infrastructure"
+]
 
 # politics orders
-ADD_MILITARY_ADVISOR_COMMAND = "military_advisor"
-ADD_CIVIL_ADVISOR_COMMAND = "civil_advisor"
-CHANGE_INDUSTRY_TYPE_COMMAND = "distributed_industry"
-UPGRADE_INDUSTRY_TECH_COMMAND = "industry_tech"
-UPGRADE_CONSTRUCTION_TECH_COMMAND = "construction_tech"
-PUSH_CONSCRIPTION_COMMAND = "push_conscription"
-PUSH_TRADE_COMMAND = "push_trade"
-PUSH_ECONOMY_COMMAND = "push_economy"
-PULL_CONSCRIPTION_COMMAND = "pull_conscription"
-PULL_TRADE_COMMAND = "pull_trade"
-PULL_ECONOMY_COMMAND = "pull_economy"
+ADD_MILITARY_ADVISOR_COMMAND = [
+    "military_advisor"
+]
+ADD_CIVIL_ADVISOR_COMMAND = [
+    "civil_advisor"
+]
+CHANGE_INDUSTRY_TYPE_COMMAND = [
+    "distributed_industry"
+]
+UPGRADE_INDUSTRY_TECH_COMMAND = [
+    "industry_tech"
+]
+UPGRADE_CONSTRUCTION_TECH_COMMAND = [
+    "construction_tech"
+]
+PUSH_CONSCRIPTION_COMMAND = [
+    "push_conscription"
+]
+PUSH_TRADE_COMMAND = [
+    "push_trade"
+]
+PUSH_ECONOMY_COMMAND = [
+    "push_economy"
+]
+PULL_CONSCRIPTION_COMMAND = [
+    "pull_conscription"
+]
+PULL_TRADE_COMMAND = [
+    "pull_trade"
+]
+PULL_ECONOMY_COMMAND = [
+    "pull_economy"
+]
 
-ADD_CONSTR_BONUS_COMMAND = "add_constr_bonus"
-ADD_CIVIL_CONSTR_BONUS_COMMAND = "add_civil_constr_bonus"
-ADD_MIL_CONSTR_BONUS_COMMAND = "add_mil_constr_bonus"
-ADD_INF_CONSTR_BONUS_COMMAND = "add_inf_constr_bonus"
+ADD_CONSTR_BONUS_COMMAND = [
+    "add_constr_bonus"
+]
+ADD_CIVIL_CONSTR_BONUS_COMMAND = [
+    "add_civil_constr_bonus"
+]
+ADD_MIL_CONSTR_BONUS_COMMAND = [
+    "add_mil_constr_bonus"
+]
+ADD_INF_CONSTR_BONUS_COMMAND = [
+    "add_inf_constr_bonus"
+]
 
-ADD_CONSUMER_GOODS_COMMAND = "add_consumer_goods"
+ADD_CONSUMER_GOODS_COMMAND = [
+    "add_consumer_goods"
+]
 
 # Building types
 MILITARY_BUILDING = "mil_fact"

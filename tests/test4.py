@@ -9,30 +9,30 @@ class Test4:
     def __init__(self):
         self.country = get_france()
         self.country.add_event(Event(
-            f"0 {BUILD_CIVIL_FACTORY} Loire 4"
+            f"0 {BUILD_CIVIL_FACTORY[0]} Loire 4"
         ))
         self.country.add_event(Event(
-            f"0 {BUILD_CIVIL_FACTORY} Centre 3"
+            f"0 {BUILD_CIVIL_FACTORY[0]} Centre 3"
         ))
         self.country.add_event(Event(
-            f"0 {BUILD_CIVIL_FACTORY} Bourgogne 4"
-        ))
-
-        self.country.add_event(Event(
-            f"0 {PUSH_TRADE_COMMAND}"
-        ))
-        self.country.add_event(Event(
-            f"0 {PUSH_TRADE_COMMAND}"
+            f"0 {BUILD_CIVIL_FACTORY[0]} Bourgogne 4"
         ))
 
         self.country.add_event(Event(
-            f"365 {ADD_CIVIL_ADVISOR_COMMAND}"
+            f"0 {PUSH_TRADE_COMMAND[0]}"
         ))
         self.country.add_event(Event(
-            f"365 {PUSH_ECONOMY_COMMAND}"
+            f"0 {PUSH_TRADE_COMMAND[0]}"
+        ))
+
+        self.country.add_event(Event(
+            f"365 {ADD_CIVIL_ADVISOR_COMMAND[0]}"
         ))
         self.country.add_event(Event(
-            f"365 {PUSH_ECONOMY_COMMAND}"
+            f"365 {PUSH_ECONOMY_COMMAND[0]}"
+        ))
+        self.country.add_event(Event(
+            f"365 {PUSH_ECONOMY_COMMAND[0]}"
         ))
         self.country.preparations()
         # Капитан индустрии + частичная мобилизация 1 января 1937
