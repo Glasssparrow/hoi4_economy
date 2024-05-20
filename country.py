@@ -42,8 +42,8 @@ class Country:
         self.consumer_goods = 0
 
     def calculate_day(self, day):
-        self._calculate_factories()
         self.activate_events(day)
+        self._calculate_factories()
         free_factories = self.factories_available
         queue_position = -1
         civil_constr_bonus = self.civil_constr_bonus
