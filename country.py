@@ -33,6 +33,7 @@ class Country:
 
         self.factories = 0
         self.mil_factories = 0
+        self.shipyards = 0
         self.factories_available = 0
         self.factories_for_consumers = 0
         self.consumer_goods = 0
@@ -152,9 +153,11 @@ class Country:
     def _calculate_factories(self):
         civil_fact = 0
         mil_fact = 0
+        shipyards = 0
         for region in self.regions:
             civil_fact += region.factories
             mil_fact += region.military_factories
+            shipyards += region.shipyards
         self.consumer_goods = self._get_consumer_goods()
         self.factories_for_consumers = floor(
                 (civil_fact + mil_fact) * self._get_consumer_goods()
@@ -164,6 +167,7 @@ class Country:
         )
         self.factories = civil_fact
         self.mil_factories = mil_fact
+        self.shipyards = shipyards
         if factories_available > 0:
             self.factories_available = round(factories_available, 0)
         else:
