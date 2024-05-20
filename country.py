@@ -164,6 +164,18 @@ class Country:
     def add_consumer_goods(self, consumer_goods_modifier):
         self._consumer_goods += consumer_goods_modifier
 
+    def add_construction_bonus(self, bonus):
+        self._constr_bonus += bonus
+
+    def add_civil_construction_bonus(self, bonus):
+        self._civil_constr_bonus += bonus
+
+    def add_mil_construction_bonus(self, bonus):
+        self._mil_constr_bonus += bonus
+
+    def add_inf_construction_bonus(self, bonus):
+        self._inf_constr_bonus += bonus
+
     def _calculate_factories(self):
         civil_fact = 0
         mil_fact = 0
