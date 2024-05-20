@@ -2,7 +2,7 @@ from region import Region
 from queue import Order
 from country import Country
 from constants import *
-from math import floor
+from .common import floor
 
 
 country = Country("France")
@@ -131,46 +131,65 @@ country.add_order(Order(
 country.preparations()
 
 
-class Test2:
-    name = "Упрощенный Французский"
+class Test3:
+    name = "День за днем Французский"
 
     def __init__(self):
         self.country = country
         self.country.move_trade(+1)
         self.country.move_trade(+1)
         self.factories365 = 32
-        self.factories730 = 36
-        self.cetre365 = 5474  # 366 день
-        self.bourgogne730 = 8643
+        self.days = {
+            0: (0, 0, 0,),  # старт
+            1: (94, 12, 0,),
+            2: (189, 25, 0,),
+            3: (283, 37, 0,),
+            4: (378, 50, 0),
+            5: (472, 63, 0),
+            6: (567, 75, 0),
+            7: (661, 88, 0),  # смотрим 1 неделю
+            31: (2929, 390, 0),  # 1 февраля
+            59: (5575, 743, 0),  # 1 марта
+            90: (8505, 1134, 0),  # 1 апреля
+            120: (540, 1512, 0),  # 1 мая
+        }
 
     def check(self, text=False):
-        result1, result2 = 0, 0  # Переменные для записи результата
-        for x in range(365):
+        region_ids = [8, 10, 5]
+        regions = self.country.regions
+        no_problems = True
+        for day in range(365):
+            if day in self.days.keys():
+                # print("День #", day)
+                # print(floor(self.country.regions[8].civil_constr_progress),
+                #       floor(self.country.regions[10].civil_constr_progress),
+                #       floor(self.country.regions[5].civil_constr_progress),
+                #       " : ",
+                #       self.days[day][0],
+                #       self.days[day][1],
+                #       self.days[day][2])
+
+                no_problem_in_the_day = True
+                for x in range(3):
+                    if (
+                        floor(regions[region_ids[x]].civil_constr_progress)
+                        != self.days[day][x]
+                    ):
+                        no_problems = False
+                        no_problem_in_the_day = False
+                    if not no_problem_in_the_day:
+                        for_print = []
+                        for i in region_ids:
+                            for_print.append(floor(
+                                regions[i].civil_constr_progress)
+                            )
+                        if text:
+                            print(
+                                f"День {day} не совпадает. "
+                                f"Ожидаем/получили [{self.days[day][0]}, " 
+                                f"{self.days[day][1]}, "
+                                f"{self.days[day][2]}]/"
+                                f"{for_print}. "
+                            )
             self.country.calculate_day()
-            result1 = self.country.factories
-        for y in range(365):
-            self.country.calculate_day()
-            result2 = self.country.factories
-        if (
-                self.factories365 == self.country.factories
-        ):
-            return True
-        else:
-            if text:
-                print(
-                    f"Результаты теста {self.name}\n"
-                    f"Целевой результат:"
-                    f"1 год - {self.factories365}, Cetre - "
-                    f"{self.cetre365} прогресса,"
-                    f"2 года - {self.factories730}, Bourgogne - "
-                    f"{self.bourgogne730} прогресса.\n"
-                    f"Полученный результат: "
-                    f"1 год - {result1}, "
-                    f"2 года - {result2}, {self.country.regions[10].name} - "
-                    f"{floor(self.country.regions[10].civil_constr_progress)}"
-                    f" прогресса,"
-                    f"{self.country.regions[5].name} - "
-                    f"{floor(self.country.regions[5].civil_constr_progress)} "
-                    f"прогресса."
-                )
-            return False
+        return no_problems
