@@ -32,11 +32,11 @@ class Event:
         elif self.order[1] == ADD_CIVIL_ADVISOR_COMMAND:
             owner.add_civil_advisor()
         elif self.order[1] == CHANGE_INDUSTRY_TYPE_COMMAND:
-            pass
+            owner.distributed_industry = True
         elif self.order[1] == UPGRADE_INDUSTRY_TECH_COMMAND:
-            pass
+            owner.upgrade_industry_tech()
         elif self.order[1] == UPGRADE_CONSTRUCTION_TECH_COMMAND:
-            pass
+            owner.upgrade_construction_tech()
         elif self.order[1] == CHANGE_CONSCRIPTION_COMMAND:
             pass
         elif self.order[1] == CHANGE_TRADE_COMMAND:
