@@ -19,6 +19,9 @@ class Country:
         self.factory_limit_bonus = 0
         self._consumer_goods = 0
 
+        self._have_civil_advisor = False
+        self._have_mil_advisor = False
+
         self.conscription_law = get_conscription_law()
         self.economy_law = get_economy_law()
         self.trade_law = get_trade_law()
@@ -106,10 +109,21 @@ class Country:
         self.regions.append(region)
 
     def add_military_advisor(self):
-        self._mil_constr_bonus = 0.1
+        if self._have_mil_advisor:
+            raise Exception(
+                "Уже есть советник на заводы"
+            )
+        self._mil_constr_bonus += 0.1
+        self._have_mil_advisor = True
 
     def add_civil_advisor(self):
-        self._civil_constr_bonus = 0.1
+        if self._have_civil_advisor:
+            raise Exception(
+                "Уже есть советник на фабрики."
+            )
+        self._civil_constr_bonus += 0.1
+        self._inf_constr_bonus += 0.1
+        self._have_civil_advisor = True
 
     @property
     def distributed_industry(self):
