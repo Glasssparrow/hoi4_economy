@@ -5,10 +5,61 @@ PATH = "provinces"
 FORMATS_LIST = ".txt"
 
 
+def is_text(letter):
+    if letter.isalpha():
+        return True
+    elif letter == "_":
+        return True
+    else:
+        return False
+
+
 def add_quotes(string):
-    for x in range(len(string)):
-        pass
-    print("#", string)
+    text1, text2 = [None, None], [None, None,]
+    # Находим фразы
+    for x in range(len(string)-1):
+        # Избегание кавычек нужно для того,
+        # чтобы оставить название с номером.
+        if (
+            not is_text(string[x]) and is_text(string[x+1])
+            and string[x] != '"' and string[x+1] != '"'
+        ):
+            if not text1[0]:
+                text1[0] = x+1
+            elif not text2[0]:
+                text2[0] = x+1
+            else:
+                raise Exception("Непредвиденный инцидент (вероятно 3 фразы в строке)")
+        if (
+            is_text(string[x]) and not is_text(string[x+1])
+            and string[x] != '"' and string[x+1] != '"'
+        ):
+            if not text1[1]:
+                text1[1] = x+1
+            elif not text2[1]:
+                text2[1] = x+1
+            else:
+                raise Exception("Непредвиденный инцидент (вероятно 3 фразы в строке)")
+    text1_fine, text2_fine = False, False
+    # Смотрим какие фразы найдены полностью.
+    if text1[0] and text1[1]:
+        text1_fine = True
+    if text2[0] and text2[1]:
+        text2_fine = True
+    # Берем в кавычки полностью найденные фразы.
+    if text2_fine:
+        string = (
+            string[:text2[0]] + '"' +
+            string[text2[0]:text2[1]] + '"' +
+            string[text2[1]:]
+        )
+    if text1_fine:
+        string = (
+            string[:text1[0]] + '"' +
+            string[text1[0]:text1[1]] + '"' +
+            string[text1[1]:]
+        )
+    print(string)
     return string
 
 
@@ -47,10 +98,13 @@ for file in provinces_list:
         # Заменяем "=" на ":" т.к. преобразовываем в словарь
         new_line = line.replace("=", ":")
         # Запятые в конце строки
-        if ":" in new_line:
+        if (
+            ":" in new_line and
+            not ("{" in new_line and "}" not in new_line)
+        ):
             new_line = new_line + ","
-        # Удаляем кавычки т.к. будем вставлять свои
-        new_line = new_line.replace('"', "")
+        # # Удаляем кавычки т.к. будем вставлять свои
+        # new_line = new_line.replace('"', "")
         new_line = add_quotes(new_line)  # Добавляем свои кавычки
         new_list.append(new_line)
     new_text = ""
@@ -58,9 +112,5 @@ for file in provinces_list:
         new_text = f"{new_text}{line}\n"
     # print(new_text)
 
-# lets_try = literal_eval("""
-# {2:3}
-# """)
-# print(lets_try)
-
-# print("d".isalpha())
+    # lets_try = literal_eval(new_text)
+    # print(lets_try)
