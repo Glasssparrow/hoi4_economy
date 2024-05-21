@@ -5,8 +5,9 @@ from math import floor
 
 class Country:
 
-    def __init__(self, name):
+    def __init__(self, name, tag="no tag"):
         self.name = name
+        self.tag = tag
         self.regions = []
         self.queue = []
         self.events = []
