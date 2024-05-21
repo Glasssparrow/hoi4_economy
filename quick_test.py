@@ -1,8 +1,13 @@
 from os import path, listdir
 from ast import literal_eval
+from json import dump
 
 PATH = "provinces"
 FORMATS_LIST = ".txt"
+
+# Для сбора данных при написании кода
+find_towns = []
+find_buildings = []
 
 
 def is_text(letter):
@@ -101,8 +106,6 @@ for file in provinces_list:
     file_name = full_file_name.split(".")[0]  # Имя файла
     province_number = int(file_name.split("-")[0])  # Номер провинции по порядку
     province_name = file_name.split("-")[1].lower()  # Название провинции
-    provinces_dict[province_number] = {}  # Добавляем словарь для данных провинции
-    provinces_dict[province_number]["name"] = province_name  # Добавляем имя
 
     with open(file) as link_to_the_file:  # Читаем данные
         raw_string = link_to_the_file.read()  # Получаем сырую строку данных
@@ -154,10 +157,50 @@ for file in provinces_list:
     for line in new_list:
         new_text = f"{new_text}{line}\n"
     raw_dict = literal_eval(new_text)[0]
-    for k in ["history"]:
-        if k not in raw_dict.keys():
-            print(k, file_name)
-        else:
-            for y in ["owner", "buildings"]:
-                if y not in raw_dict["history"].keys():
-                    print(y, file_name)
+
+    # Теперь можно начать заполнять наш словарь
+    provinces_dict[province_number] = {}  # Добавляем словарь для данных провинции
+    prov = provinces_dict[province_number]
+    history = raw_dict.get("history", {})
+    prov["name"] = province_name  # Добавляем имя
+    prov["owner"] = history["owner"]
+    prov["infrastructure"] = history.get("infrastructure", 0)
+    prov["factories"] = history.get("industrial_complex", 0)
+    prov["military_factories"] = history.get("arms_factory", 0)
+    prov["shipyards"] = history.get("dockyard", 0)
+    prov["fuel_silo"] = history.get("fuel_silo", 0)
+    prov["anti_air"] = history.get("anti_air_building", 0)
+    prov["air_base"] = history.get("air_base", 0)
+    prov["radar"] = history.get("radar_station", 0)
+    prov["synth_oil"] = history.get("synthetic_refinery", 0)
+    lands = {
+        "wasteland": 0,
+        "enclave": 0,
+        "tiny_island": 0,
+        "pastoral": 1,
+        "small_island": 1,
+        "rural": 2,
+        "town": 4,
+        "large_town": 5,
+        "city": 6,
+        "large_city": 8,
+        "metropolis": 10,
+        "megalopolis": 12,
+    }
+    for k, v in lands.items():
+        if raw_dict["state_category"] == k:
+            prov["max_factories"] = v
+
+    for k, v in history.get("buildings", {}).items():
+        if k not in find_buildings and not isinstance(k, int):
+            find_buildings.append(k)
+    if (raw_dict["state_category"] not in find_towns and
+        raw_dict["state_category"] not in lands.keys()):
+        find_towns.append(raw_dict["state_category"])
+
+with open("provinces.txt", "w") as json_file:
+    dump(provinces_dict, json_file)
+
+# print(find_buildings)
+# print(find_towns)
+# print(len(find_towns))
