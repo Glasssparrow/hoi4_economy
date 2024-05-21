@@ -34,7 +34,7 @@ def get_country(data: dict, name_or_tag: str, by_tag=False):
     for number, region_data in data.items():
         if country.tag == region_data["owner"]:
             country.add_region(Region(
-                name=name,
+                name=region_data["name"],
                 max_factories=region_data["max_factories"],
                 infrastructure=region_data["infrastructure"],
                 factories=region_data["factories"],
