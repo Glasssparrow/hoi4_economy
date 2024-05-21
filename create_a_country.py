@@ -16,7 +16,7 @@ def get_country(data: dict, name_or_tag: str, by_tag=False):
     if by_tag:
         tag = name_or_tag
         for number, province_data in data.items():
-            if province_data["owner"] == name_or_tag:
+            if province_data["owner"] == tag:
                 name = province_data["name"]
                 not_found = False
                 break
