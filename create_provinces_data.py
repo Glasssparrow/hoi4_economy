@@ -164,7 +164,7 @@ for file in provinces_list:
     buildings = history.get("buildings", {})
     # Читаем данные
     prov["name"] = province_name  # Добавляем имя
-    prov["owner"] = history["owner"]
+    prov["owner"] = history["owner"].lower()
     prov["infrastructure"] = buildings.get("infrastructure", 0)
     prov["factories"] = buildings.get("industrial_complex", 0)
     prov["military_factories"] = buildings.get("arms_factory", 0)
