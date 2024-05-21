@@ -10,9 +10,9 @@ class Test5:
     def __init__(self):
         data = get_data()
         self.country = get_country(data=data, name_or_tag="France")
-        self.factories = 0
-        self.mil_factories = 0
-        self.shipyards = 0
+        self.factories = 33
+        self.mil_factories = 8
+        self.shipyards = 11
 
     def check(self, text=False):
         if (self.factories == self.country.factories and
