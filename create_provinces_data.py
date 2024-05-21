@@ -158,21 +158,22 @@ for file in provinces_list:
 
     # Теперь можно начать заполнять наш словарь
     provinces_dict[province_number] = {}  # Добавляем словарь для данных провинции
-    # Для удобства берем ссылки на словарь истории и словарь провинции
+    # Для удобства берем ссылки на словари
     prov = provinces_dict[province_number]
     history = data_dict.get("history", {})
+    buildings = history.get("buildings", {})
     # Читаем данные
     prov["name"] = province_name  # Добавляем имя
     prov["owner"] = history["owner"]
-    prov["infrastructure"] = history.get("infrastructure", 0)
-    prov["factories"] = history.get("industrial_complex", 0)
-    prov["military_factories"] = history.get("arms_factory", 0)
-    prov["shipyards"] = history.get("dockyard", 0)
-    prov["fuel_silo"] = history.get("fuel_silo", 0)
-    prov["anti_air"] = history.get("anti_air_building", 0)
-    prov["air_base"] = history.get("air_base", 0)
-    prov["radar"] = history.get("radar_station", 0)
-    prov["synth_oil"] = history.get("synthetic_refinery", 0)
+    prov["infrastructure"] = buildings.get("infrastructure", 0)
+    prov["factories"] = buildings.get("industrial_complex", 0)
+    prov["military_factories"] = buildings.get("arms_factory", 0)
+    prov["shipyards"] = buildings.get("dockyard", 0)
+    prov["fuel_silo"] = buildings.get("fuel_silo", 0)
+    prov["anti_air"] = buildings.get("anti_air_building", 0)
+    prov["air_base"] = buildings.get("air_base", 0)
+    prov["radar"] = buildings.get("radar_station", 0)
+    prov["synth_oil"] = buildings.get("synthetic_refinery", 0)
     # Список типов регионов с максимумами слотов
     lands = {
         "wasteland": 0,
