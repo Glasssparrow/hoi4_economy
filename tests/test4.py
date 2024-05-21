@@ -1,20 +1,47 @@
-from .common import floor, get_france_for_tests_2_and_3
+from .common import floor, get_france
+from constants import *
+from events import Event
 
 
-class Test3:
-    name = "с капитаном индустрии Французский"
+class Test4:
+    name = "ивенты Французский"
 
     def __init__(self):
-        self.country = get_france_for_tests_2_and_3()
-        self.country.move_trade(+1)
-        self.country.move_trade(+1)
+        self.country = get_france()
+        self.country.add_event(Event(
+            f"0 {BUILD_CIVIL_FACTORY[0]} Loire 4"
+        ))
+        self.country.add_event(Event(
+            f"0 {BUILD_CIVIL_FACTORY[0]} Centre 3"
+        ))
+        self.country.add_event(Event(
+            f"0 {BUILD_CIVIL_FACTORY[0]} Bourgogne 4"
+        ))
+
+        self.country.add_event(Event(
+            f"0 {PUSH_TRADE_COMMAND[0]}"
+        ))
+        self.country.add_event(Event(
+            f"0 {PUSH_TRADE_COMMAND[0]}"
+        ))
+
+        self.country.add_event(Event(
+            f"365 {ADD_CIVIL_ADVISOR_COMMAND[0]}"
+        ))
+        self.country.add_event(Event(
+            f"365 {PUSH_ECONOMY_COMMAND[0]}"
+        ))
+        self.country.add_event(Event(
+            f"365 {PUSH_ECONOMY_COMMAND[0]}"
+        ))
+        self.country.preparations()
         # Капитан индустрии + частичная мобилизация 1 января 1937
         self.days = {
             0: (0, 0, 0,),  # старт
             365: (2092, 5455, 0),  # 1 января 1937
             366: (2241, 5525, 0),  # 2 января 1937
             396: (6696, 7604, 0),  # 1 февраля 1937
-            730: (0, 0, 4517)  # 1 января 1938
+            730: (0, 0, 4517),  # 1 января 1938
         }
         # день: (фабрики, военные_заводы, верфи)
         self.industry = {
@@ -30,21 +57,7 @@ class Test3:
         regions = self.country.regions
         no_problems = True
         for day in range(731):
-            if day == 365:
-                self.country.add_civil_advisor()
-                self.country.move_economy(+1)
-                self.country.move_economy(+1)
             if day in self.days.keys():
-                # print("День #", day)
-                # print(self.days[day][0],
-                #       self.days[day][1],
-                #       self.days[day][2],
-                #       " : ",
-                #       floor(self.country.regions[8].civil_constr_progress),
-                #       floor(self.country.regions[10].civil_constr_progress),
-                #       floor(self.country.regions[5].civil_constr_progress),
-                #       )
-
                 no_problem_in_the_day = True
                 # Проверяем прогресс строительства в 3 выбранных регионах.
                 for x in range(3):

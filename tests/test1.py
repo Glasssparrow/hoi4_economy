@@ -48,7 +48,7 @@ class Test1:
 
     def check(self, text=False):
         for x in range(365):
-            self.country.calculate_day()
+            self.country.calculate_day(x)
         # print(self.country.regions[0].civil_constr_progress)
         # print(f"Доступно фабрик {self.country.factories_available}")
         # print(self.country.consumer_goods)

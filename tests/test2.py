@@ -77,5 +77,5 @@ class Test2:
                             f"{self.days[day][2]}]/"
                             f"{for_print}. "
                         )
-            self.country.calculate_day()
+            self.country.calculate_day(day)
         return no_problems
