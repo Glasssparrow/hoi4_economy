@@ -18,7 +18,7 @@ class Region:
         self.factories = factories
         self.military_factories = military_factories
         self.shipyards = shipyards
-        self.fuel_silo=fuel_silo
+        self.fuel_silo = fuel_silo
         # resources
         self.oil = 0
         self.aluminum = 0
