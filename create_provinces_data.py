@@ -163,7 +163,7 @@ for file in provinces_list:
     history = data_dict.get("history", {})
     buildings = history.get("buildings", {})
     # Читаем данные
-    prov["name"] = province_name  # Добавляем имя
+    prov["name"] = province_name.replace(" ", "_")  # Добавляем имя
     prov["owner"] = history["owner"].lower()
     prov["infrastructure"] = buildings.get("infrastructure", 0)
     prov["factories"] = buildings.get("industrial_complex", 0)
