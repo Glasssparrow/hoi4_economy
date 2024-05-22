@@ -1,7 +1,7 @@
 from .common import floor, get_france_for_tests_2_and_3
 
 
-class Test2:
+class DayAfterDayFrance:
     name = "День за днем Французский"
 
     def __init__(self):

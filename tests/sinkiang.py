@@ -39,7 +39,7 @@ country.add_order(Order(
 country.preparations()
 
 
-class Test1:
+class Sinkiang:
     name = "Упрощенный Синцзянский"
 
     def __init__(self):

@@ -1,15 +1,15 @@
 from create_a_country import get_data, get_country
 
 
-class Test6:
-    name = "читаем данные Советы"
+class ReadGermany:
+    name = "читаем данные Германия"
 
     def __init__(self):
         data = get_data()
-        self.country = get_country(data=data, name_or_tag="SOV", by_tag=True)
-        self.factories = 45
-        self.mil_factories = 32
-        self.shipyards = 6
+        self.country = get_country(data=data, name_or_tag="ger", by_tag=True)
+        self.factories = 34
+        self.mil_factories = 28
+        self.shipyards = 10
 
     def check(self, text=False):
         if (

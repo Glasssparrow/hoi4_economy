@@ -3,7 +3,7 @@ from constants import *
 from events import Event
 
 
-class Test4:
+class EventsFrance:
     name = "ивенты Французский"
 
     def __init__(self):

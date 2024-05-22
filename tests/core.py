@@ -4,7 +4,7 @@ from constants import *
 from events import Event
 
 
-class Test7:
+class Core:
     name = "Советы"
 
     def __init__(self):
