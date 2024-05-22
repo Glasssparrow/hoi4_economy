@@ -100,9 +100,12 @@ for file in files_list:
 # Цикл заполнения словаря с итоговыми данными
 for file in provinces_list:
     full_file_name = path.basename(file)  # Имя файла вместе с расширением
-    file_name = full_file_name.split(".")[0]  # Имя файла
+    file_name = full_file_name[
+        :-len(full_file_name.split(".")[-1])-1  # -1 для удаления точки
+                ]  # Имя файла
     province_number = int(file_name.split("-")[0])  # Номер провинции по порядку
     province_name = file_name.split("-")[1].lower()  # Название провинции
+    province_name = province_name.rstrip()  # Удаляем пробелы с краев
 
     with open(file) as link_to_the_file:  # Читаем данные
         raw_string = link_to_the_file.read()  # Получаем сырую строку данных
