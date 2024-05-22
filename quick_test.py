@@ -8,6 +8,8 @@ FORMATS_LIST = ".txt"
 # Для сбора данных при написании кода
 find_towns = []
 find_buildings = []
+province_id = 0
+factories = 0
 
 
 def is_text(letter):
@@ -103,9 +105,16 @@ for file in files_list:
 # Цикл заполнения словаря с итоговыми данными
 for file in provinces_list:
     full_file_name = path.basename(file)  # Имя файла вместе с расширением
-    file_name = full_file_name.split(".")[0]  # Имя файла
+    file_name = full_file_name[
+                :-len(full_file_name.split(".")[-1]) - 1  # -1 для удаления точки
+                ]  # Имя файла
     province_number = int(file_name.split("-")[0])  # Номер провинции по порядку
-    province_name = file_name.split("-")[1].lower()  # Название провинции
+    province_name = file_name[
+                    len(file_name.split("-")[0]) + 1:  # +1 для удаления "-"
+                    ]  # Название провинции
+    province_name = province_name.replace("-", "_")
+    province_name = province_name.rstrip()  # Удаляем пробелы с краев
+    province_name = province_name.lower()
 
     with open(file) as link_to_the_file:  # Читаем данные
         raw_string = link_to_the_file.read()  # Получаем сырую строку данных
@@ -162,17 +171,53 @@ for file in provinces_list:
     provinces_dict[province_number] = {}  # Добавляем словарь для данных провинции
     prov = provinces_dict[province_number]
     history = raw_dict.get("history", {})
-    prov["name"] = province_name  # Добавляем имя
-    prov["owner"] = history["owner"]
-    prov["infrastructure"] = history.get("infrastructure", 0)
-    prov["factories"] = history.get("industrial_complex", 0)
-    prov["military_factories"] = history.get("arms_factory", 0)
-    prov["shipyards"] = history.get("dockyard", 0)
-    prov["fuel_silo"] = history.get("fuel_silo", 0)
-    prov["anti_air"] = history.get("anti_air_building", 0)
-    prov["air_base"] = history.get("air_base", 0)
-    prov["radar"] = history.get("radar_station", 0)
-    prov["synth_oil"] = history.get("synthetic_refinery", 0)
+    buildings = history.get("buildings", {})
+    prov["name"] = province_name.replace(" ", "_")  # Добавляем имя
+    prov["owner"] = history["owner"].lower()
+    prov["infrastructure"] = buildings.get("infrastructure", 0)
+    prov["factories"] = buildings.get("industrial_complex", 0)
+    prov["military_factories"] = buildings.get("arms_factory", 0)
+    prov["shipyards"] = buildings.get("dockyard", 0)
+    prov["fuel_silo"] = buildings.get("fuel_silo", 0)
+    prov["anti_air"] = buildings.get("anti_air_building", 0)
+    prov["air_base"] = buildings.get("air_base", 0)
+    prov["radar"] = buildings.get("radar_station", 0)
+    prov["synth_oil"] = buildings.get("synthetic_refinery", 0)
+    found_factories = {
+        "france": 1,  # corsica
+        "normandy": 2,
+        "ile_de_france": 4,
+        "champagne": 1,
+        "franche_comte": 2,  # rhone
+        "bouches_du_rhone": 1,
+        "roussillion": 2,  # languedoc
+        "poitou": 1,
+        "centre": 2,
+        "bourgogne": 1,  # Auvergne
+        "champagne2": 2,  # Bourgogne
+        "alcase": 3,  # Alcase Lorraine
+        "indochina": 1,  # Southern indochina
+        "pas_de_calais": 3,  # Nord pas de calais
+        "loire": 1,
+        "midi_pyrenees": 1,
+        "tunisia": 1,
+        "northern_morocco": 1,  # casablanca
+        "lebanon": 1,
+        "annam": 1,  # tolkin
+        "cameroon": 1,
+        "picardy": 1,
+        "alcase_lorraine": 1,  # france comte
+    }
+    if (history["owner"] == "FRA" and prov["factories"] > 0 and not
+    prov["name"] in found_factories.keys()):
+        factories += prov["factories"]
+        province_id += 1
+        print(province_id, file_name, ":", prov["name"],
+              f"+{prov['factories']}", factories)
+    elif (history["owner"] == "FRA" and prov["factories"] > 0):
+        if prov["factories"] != found_factories[prov["name"]]:
+            print(f"{prov['name']}:{prov['factories']}"
+                  f"/{found_factories[prov['name']]}", full_file_name)
     lands = {
         "wasteland": 0,
         "enclave": 0,
@@ -204,3 +249,7 @@ with open("provinces.txt", "w") as json_file:
 # print(find_buildings)
 # print(find_towns)
 # print(len(find_towns))
+    fact_in_dict = 0
+    for k, v in found_factories.items():
+        fact_in_dict += v
+    print(f"Найдено фабрик {fact_in_dict}")
