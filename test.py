@@ -15,7 +15,10 @@ print_text = True
 # Не знаю что с этим делать, думаю пока оставлю.
 # Странно что описание из файлов игры не совпадает с тем что я вижу в игре.
 something_wrong = False
-for test in [Sinkiang, DayAfterDayFrance, AdvisorAndLaw, EventsFrance, ReadGermany, ReadSoviets, Core, NonCore]:
+for test in [Sinkiang, DayAfterDayFrance,
+             AdvisorAndLaw, EventsFrance,
+             ReadGermany, ReadSoviets,
+             Core, NonCore]:
     x = test()
     if not x.check(print_text):
         print(f"Тест {x.name} не пройден.")
