@@ -104,7 +104,10 @@ for file in provinces_list:
         :-len(full_file_name.split(".")[-1])-1  # -1 для удаления точки
                 ]  # Имя файла
     province_number = int(file_name.split("-")[0])  # Номер провинции по порядку
-    province_name = file_name.split("-")[1].lower()  # Название провинции
+    province_name = file_name[
+                    len(file_name.split("-")[0]) + 1:  # +1 для удаления "-"
+                    ]  # Название провинции
+    province_name = province_name.replace("-", "_")
     province_name = province_name.rstrip()  # Удаляем пробелы с краев
 
     with open(file) as link_to_the_file:  # Читаем данные
