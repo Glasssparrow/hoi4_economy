@@ -64,7 +64,7 @@ def add_quotes(string, maximum_phrases=20):
 
 def separate_numbers(string, max_spaces=6):
     """Разделяем числа запятыми. А также число строка, тоже.
-    Превращаем даты в мессиво."""
+    Ликвидируем все даты."""
     for x in range(len(string)-2):
         if (
             string[x].isdigit() and
