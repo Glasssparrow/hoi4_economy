@@ -1,6 +1,5 @@
 from os import path, listdir
 from ast import literal_eval
-from json import dump
 from constants import PATH_TO_PROVINCES, GAME_DATA_FILE_TYPE
 
 
@@ -205,6 +204,4 @@ def create_provinces_file():
         for k, v in lands.items():  # Устанавливаем максимум слотов
             if data_dict["state_category"] == k:
                 prov["max_factories"] = v
-
-    with open("provinces.txt", "w") as json_file:
-        dump(provinces_dict, json_file)
+    return provinces_dict

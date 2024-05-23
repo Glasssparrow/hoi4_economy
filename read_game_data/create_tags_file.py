@@ -1,5 +1,4 @@
 from os import path, listdir
-from json import dump
 from constants import PATH_TO_PROVINCES, GAME_DATA_FILE_TYPE
 
 
@@ -57,6 +56,4 @@ def create_tags_file():
                 core = core.strip()
                 if core not in tags:
                     tags.append(core)
-
-    with open("tags.txt", "w") as json_file:
-        dump(tags, json_file)
+    return tags
