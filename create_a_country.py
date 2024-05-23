@@ -45,4 +45,3 @@ def get_country(data: dict, name_or_tag: str, by_tag=False):
             ))
     country.preparations()
     return country
-
