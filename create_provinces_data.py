@@ -172,6 +172,14 @@ for file in provinces_list:
     # Читаем данные
     prov["name"] = province_name.replace(" ", "_")  # Добавляем имя
     prov["owner"] = history["owner"].lower()
+    is_core = False
+    for line in new_list:
+        if "add_core_of" in line and history["owner"] in line:
+            is_core = True
+    if is_core:
+        prov["core"] = True
+    else:
+        prov["core"] = False
     prov["infrastructure"] = buildings.get("infrastructure", 0)
     prov["factories"] = buildings.get("industrial_complex", 0)
     prov["military_factories"] = buildings.get("arms_factory", 0)
