@@ -1,5 +1,4 @@
 from os import path, listdir
-from ast import literal_eval
 from json import dump
 
 PATH = "provinces"
@@ -12,6 +11,8 @@ provinces_list = []  # Список путей к текстовым файла�
 for file in files_list:
     if file[-len(FORMATS_LIST):] == FORMATS_LIST:
         provinces_list.append(path.join(PATH, file))
+# Лист с уникальными кодами стран
+tags = []
 # Цикл заполнения словаря с итоговыми данными
 for file in provinces_list:
     full_file_name = path.basename(file)  # Имя файла вместе с расширением
@@ -35,8 +36,6 @@ for file in provinces_list:
                 f"{year}.{month}.",
                 "",
             )
-    # Переменные начинающиеся с чисел это ересь.
-    # Судя по всему число в начале это дата, или типо того.
     raw_string = raw_string.replace(
         "843.ETH_state_development_production_speed",
         "Why_variable_starts_with_a_number",
@@ -51,5 +50,14 @@ for file in provinces_list:
     for element_number in reversed(range(len(raw_list))):
         if not raw_list[element_number]:
             raw_list.pop(element_number)
-    raw_list[0] = raw_list[0].split("=")[1]  # Удаляем "state="
-    
+    for line in raw_list:
+        if "add_core_of" in line:
+            core = line.split("=")[1]
+            if "#" in core:
+                core = core.split("#")[0]
+            core = core.strip()
+            if core not in tags:
+                tags.append(core)
+
+with open("tags.txt", "w") as json_file:
+    dump(tags, json_file)
