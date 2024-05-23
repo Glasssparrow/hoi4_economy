@@ -9,4 +9,3 @@ with open("tags.txt", "w") as json_file:
 provinces_dict = create_provinces_file()
 with open("provinces.txt", "w") as json_file:
     dump(provinces_dict, json_file)
-    
