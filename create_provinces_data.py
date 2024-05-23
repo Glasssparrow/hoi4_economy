@@ -109,7 +109,7 @@ for file in provinces_list:
                     ]  # Название провинции
     province_name = province_name.replace("-", "_")
     province_name = province_name.lower()
-    province_name = province_name.rstrip()  # Удаляем пробелы с краев
+    province_name = province_name.strip()  # Удаляем пробелы с краев
 
     with open(file) as link_to_the_file:  # Читаем данные
         raw_string = link_to_the_file.read()  # Получаем сырую строку данных
