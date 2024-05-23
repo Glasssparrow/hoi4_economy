@@ -86,7 +86,7 @@ def separate_numbers(string, max_spaces=6):
     return string
 
 
-def create_provinces_file():
+def create_provinces_file(tags):
     provinces_dict = {}  # Словарь с итоговыми данными
     files_list = listdir(PATH_TO_PROVINCES)  # Список путей к файлам
     provinces_list = []  # Список путей к текстовым файлам
@@ -169,14 +169,11 @@ def create_provinces_file():
         # Читаем данные
         prov["name"] = province_name.replace(" ", "_")  # Добавляем имя
         prov["owner"] = history["owner"].lower()
-        is_core = False
+        prov["cores"] = []
         for line in new_list:
-            if "add_core_of" in line and history["owner"] in line:
-                is_core = True
-        if is_core:
-            prov["core"] = True
-        else:
-            prov["core"] = False
+            for tag in tags:
+                if "add_core_of" in line and tag in line:
+                    prov["cores"].append(tag.lower())
         prov["infrastructure"] = buildings.get("infrastructure", 0)
         prov["factories"] = buildings.get("industrial_complex", 0)
         prov["military_factories"] = buildings.get("arms_factory", 0)
