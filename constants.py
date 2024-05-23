@@ -154,3 +154,7 @@ def get_economy_law():
         civil_constr=0, mil_constr=0.3, cons_goods=0.10)
     economy.default_pos = 2
     return economy
+
+
+PATH_TO_PROVINCES = "./provinces"
+GAME_DATA_FILE_TYPE = ".txt"
