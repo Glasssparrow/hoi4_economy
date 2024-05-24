@@ -9,6 +9,7 @@ class Region:
                  factories, military_factories,
                  shipyards=0, fuel_silo=0, synth_oil=0):
         self.name = name
+        self.cores = cores
         # limits
         self.factories_limit = max_factories
         self.init_fact_limit = max_factories
