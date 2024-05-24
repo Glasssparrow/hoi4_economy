@@ -12,7 +12,7 @@ def floor(number):
 
 def get_france():
     core = "fra"
-    country = Country("France")
+    country = Country("France", tag="fra")
     country.add_region(Region(
         "Nord Pas De Calais", [core],
         8,

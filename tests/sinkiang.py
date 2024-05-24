@@ -6,7 +6,7 @@ from .common import floor
 
 
 core = "sik"
-country = Country("Sinkiang")
+country = Country("Sinkiang", "sik")
 country.add_region(Region(
     "Dabancheng", [core],
     2,
