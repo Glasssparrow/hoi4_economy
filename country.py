@@ -5,7 +5,7 @@ from math import floor
 
 class Country:
 
-    def __init__(self, name, tag="no tag"):
+    def __init__(self, name, tag="no tag", start_non_core_compliance=0.5):
         self.name = name
         self.tag = tag
         self.regions = []
@@ -19,6 +19,7 @@ class Country:
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
         self._consumer_goods = 0
+        self._non_core_efficiency = start_non_core_compliance
 
         self._have_civil_advisor = False
         self._have_mil_advisor = False
