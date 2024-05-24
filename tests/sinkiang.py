@@ -5,29 +5,36 @@ from constants import *
 from .common import floor
 
 
+core = "sik"
 country = Country("Sinkiang")
 country.add_region(Region(
-    "Dabancheng", 2,
+    "Dabancheng", [core],
+    2,
     2, 0, 1
 ))
 country.add_region(Region(
-    "Dzungaria", 1,
+    "Dzungaria", [core],
+    1,
     2, 1, 0
 ))
 country.add_region(Region(
-    "Kunlun Shan", 0,
+    "Kunlun Shan", [core],
+    0,
     1, 0, 0
 ))
 country.add_region(Region(
-    "Urumqi", 2,
+    "Urumqi", [core],
+    2,
     2, 2, 0
 ))
 country.add_region(Region(
-    "Taklamakan", 0,
+    "Taklamakan", [core],
+    0,
     1, 0, 0
 ))
 country.add_region(Region(
-    "Yarkand", 1,
+    "Yarkand", [core],
+    1,
     1, 1, 0
 ))
 country.add_order(Order(

@@ -11,110 +11,132 @@ def floor(number):
 
 
 def get_france():
+    core = "fra"
     country = Country("France")
     country.add_region(Region(
-        "Nord Pas De Calais", 8,
+        "Nord Pas De Calais", [core],
+        8,
         4, 3, 0
     ))
     country.add_region(Region(
-        "Picardy", 4,
+        "Picardy", [core],
+        4,
         4, 1, 0
     ))
     country.add_region(Region(
-        "Champagne", 6,
+        "Champagne", [core],
+        6,
         4, 1, 0
     ))
     country.add_region(Region(
-        "Alsace Lorraine", 6,
+        "Alsace Lorraine", [core],
+        6,
         4, 3, 0
     ))
     country.add_region(Region(
-        "Franche Comte", 6,
+        "Franche Comte", [core],
+        6,
         4, 1, 0
     ))
     country.add_region(Region(
-        "Bourgogne", 6,
+        "Bourgogne", [core],
+        6,
         4, 2, 0
     ))
     country.add_region(Region(
-        "Ile De France", 10,
+        "Ile De France", [core],
+        10,
         4, 4, 4
     ))
     country.add_region(Region(
-        "Normandy", 6,
+        "Normandy", [core],
+        6,
         4, 2, 0
     ))
     country.add_region(Region(
-        "Loire", 6,
+        "Loire", [core],
+        6,
         4, 1, 0, 1
     ))
     country.add_region(Region(
-        "Brittany", 6,
+        "Brittany", [core],
+        6,
         3, 0, 0, 5
     ))
     country.add_region(Region(
-        "Centre", 5,
+        "Centre", [core],
+        5,
         4, 2, 0
     ))
     country.add_region(Region(
-        "Rhone", 6,
+        "Rhone", [core],
+        6,
         4, 2, 1
     ))
     country.add_region(Region(
-        "Alpes", 4,
+        "Alpes", [core],
+        4,
         2, 0, 0
     ))
     country.add_region(Region(
-        "Bouches Du Rhone", 6,
+        "Bouches Du Rhone", [core],
+        6,
         3, 1, 1, 1, 1
     ))
     country.add_region(Region(
-        "Var", 5,
+        "Var", [core],
+        5,
         3, 0, 0, 3
     ))
     country.add_region(Region(
-        "Savoy", 4,
+        "Savoy", [core],
+        4,
         2, 0, 0
     ))
     country.add_region(Region(
-        "Poitou", 4,
+        "Poitou", [core],
+        4,
         3, 1, 0
     ))
     country.add_region(Region(
-        "Cetre Sud", 4,
+        "Cetre Sud", [core],
+        4,
         3, 0, 0
     ))
     country.add_region(Region(
-        "Auvergne", 4,
+        "Auvergne", [core],
+        4,
         3, 1, 0
     ))
     country.add_region(Region(
-        "Limousin", 5,
+        "Limousin", [core],
+        5,
         3, 0, 0
     ))
     country.add_region(Region(
-        "Languedoc", 4,
+        "Languedoc", [core],
+        4,
         3, 2, 0
     ))
     country.add_region(Region(
-        "Aquitaine", 6,
+        "Aquitaine", [core],
+        6,
         3, 0, 1, 1
-    ))
-    country.add_region(Region(
-        "", 0,
-        0, 0, 0
     ))
 
     country.add_region(Region(
-        "Pyrenees Atlatiques", 4,
+        "Pyrenees Atlatiques", [core],
+        4,
         3, 0, 0
     ))
     country.add_region(Region(
-        "Midi Pyrenees", 6,
+        "Midi Pyrenees", [core],
+        6,
         3, 1, 1
     ))
     country.add_region(Region(
-        "Corsica", 4,
+        "Corsica", [core],
+        4,
         2, 1, 0
     ))
 

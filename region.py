@@ -4,7 +4,7 @@ from math import floor
 
 class Region:
 
-    def __init__(self, name,
+    def __init__(self, name, cores,
                  max_factories, infrastructure,
                  factories, military_factories,
                  shipyards=0, fuel_silo=0, synth_oil=0):
