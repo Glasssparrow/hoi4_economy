@@ -44,9 +44,9 @@ class TradeFrance:
         for day in range(731):
             self.country1.calculate_day(day)
             self.country2.calculate_day(day)
-            if self.country1.factories != (self.country2.factories-10):
+            if self.country1.factories != self.country2.factories:
                 incorrect[day] = [self.country1.factories,
-                                  self.country2.factories-10,]
+                                  self.country2.factories,]
         if incorrect:
             if text:
                 print(f"Не совпавшие дни: {incorrect}")
