@@ -7,7 +7,7 @@ class Region:
     def __init__(self, name, global_id, cores,
                  max_factories, infrastructure,
                  factories, military_factories,
-                 shipyards=0, fuel_silo=0, synth_oil=0):
+                 shipyards=0, fuel_silo=0, synth_oil=0,):
         self.name = name
         self.global_id = global_id
         self.cores = cores
