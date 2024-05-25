@@ -6,6 +6,7 @@ from .readgermany import ReadGermany
 from .readsoviets import ReadSoviets
 from .core import Core
 from .noncore import NonCore
+from .compliance import ComplianceTest
 
 
 main = [
@@ -16,5 +17,6 @@ main = [
     "ReadGermany",
     "ReadSoviets",
     "Core",
-    "NonCore"
+    "NonCore",
+    "ComplianceTest",
 ]

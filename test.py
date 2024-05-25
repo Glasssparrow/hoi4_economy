@@ -9,7 +9,8 @@ something_wrong = False
 for test in [Sinkiang, DayAfterDayFrance,
              AdvisorAndLaw, EventsFrance,
              ReadGermany, ReadSoviets,
-             Core, NonCore]:
+             Core, NonCore,
+             ComplianceTest]:
     x = test()
     if not x.check(print_text):
         print(f"Тест {x.name} не пройден.")
