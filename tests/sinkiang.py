@@ -1,5 +1,5 @@
 from simulation_code.region import Region
-from queue import Order
+from simulation_code.queue import Order
 from simulation_code.country import Country
 from constants_and_settings.constants import *
 from .common import floor

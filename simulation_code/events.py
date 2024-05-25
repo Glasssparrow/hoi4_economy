@@ -1,5 +1,5 @@
 from constants_and_settings.constants import *
-from queue import Order
+from simulation_code.queue import Order
 
 
 class Event:
