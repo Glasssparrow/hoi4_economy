@@ -8,34 +8,58 @@ from .common import floor
 core = "sik"
 country = Country("Sinkiang", "sik")
 country.add_region(Region(
-    "Dabancheng", [core],
-    2,
-    2, 0, 1
-))
-country.add_region(Region(
-    "Dzungaria", [core],
+    "Dabancheng",
     1,
-    2, 1, 0
-))
-country.add_region(Region(
-    "Kunlun Shan", [core],
-    0,
-    1, 0, 0
-))
-country.add_region(Region(
-    "Urumqi", [core],
+    [core],
     2,
-    2, 2, 0
-))
-country.add_region(Region(
-    "Taklamakan", [core],
+    2,
     0,
-    1, 0, 0
+    1
 ))
 country.add_region(Region(
-    "Yarkand", [core],
+    "Dzungaria",
+    2,
+    [core],
     1,
-    1, 1, 0
+    2,
+    1,
+    0
+))
+country.add_region(Region(
+    "Kunlun Shan",
+    3,
+    [core],
+    0,
+    1,
+    0,
+    0
+))
+country.add_region(Region(
+    "Urumqi",
+    4,
+    [core],
+    2,
+    2,
+    2,
+    0
+))
+country.add_region(Region(
+    "Taklamakan",
+    5,
+    [core],
+    0,
+    1,
+    0,
+    0
+))
+country.add_region(Region(
+    "Yarkand",
+    6,
+    [core],
+    1,
+    1,
+    1,
+    0
 ))
 country.add_order(Order(
     region_name="Dabancheng",
