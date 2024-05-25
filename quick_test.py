@@ -34,13 +34,14 @@ def get_instructions_list():
     return simulations_instructions
 
 
-def simulate(simulations_instructions):
+def simulate(simulations_instructions, print_all=False):
     # Необходимые для расчета данные
     with open("tags.txt", "r") as json_file:
         all_tags = json_file.read()
     data = get_data()
 
-    results = []  # Для итоговых экземпляров стран
+    results = {}  # Для итоговых экземпляров стран
+    best_result = None
     for file_name, orders in simulations_instructions.items():
         if orders[0].upper() not in all_tags:
             by_tag = False
@@ -50,15 +51,31 @@ def simulate(simulations_instructions):
         # а также передаем название/тэг в переменную.
         name_or_tag = orders.pop(0)
         country = get_country(data=data, name_or_tag=name_or_tag, by_tag=by_tag)
-        results.append(country)
+        results[file_name] = country
         for order in orders:
             country.add_event(Event(order))
         for x in range(730):
             country.calculate_day(x)
-        print(
-            f"Файл {file_name}, страна {country.name} ({country.tag}).\n"
-            f"Фабрик - {country.factories}, заводов {country.mil_factories}."
-        )
+        if print_all:
+            print(
+                f"Файл {file_name}, страна {country.name} ({country.tag}).\n"
+                f"Фабрик - {country.factories}, заводов {country.mil_factories}."
+            )
+        if best_result:
+            if country.mil_factories > results[best_result].mil_factories:
+                best_result = file_name
+            elif (
+                country.mil_factories == results[best_result].mil_factories and
+                country.factories > results[best_result].factories
+            ):
+                best_result = file_name
+        else:
+            best_result = file_name
+    print(f"Лучший результат {best_result}, "
+          f"страна {results[best_result].name} "
+          f"({results[best_result].tag}). "
+          f"Фабрик - {results[best_result].factories}, "
+          f"Заводов - {results[best_result].mil_factories}")
 
 
 inst = get_instructions_list()
