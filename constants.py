@@ -94,6 +94,10 @@ SET_NEW_COMPLIANCE_GROW_BONUS = [
     "set_new_compliance_grow_bonus",
     "установить_новый_бонус_роста_контроля",
 ]
+SET_TRADE_FACTORIES = [
+    "set_trade",
+    "установить_торговлю",
+]
 START_WAR = [
     "start_war",
     "Начать_войну",

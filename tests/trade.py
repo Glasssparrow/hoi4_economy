@@ -14,7 +14,6 @@ class TradeFrance:
         self.country1.move_trade(+1)
         self.country2.move_trade(+1)
         self.country2.move_trade(+1)
-        self.country1.factories_from_trade = 10
         self.country2.add_region(Region(
             "unicorn_land",
             999,
@@ -24,6 +23,9 @@ class TradeFrance:
             10,
             0,
             0
+        ))
+        self.country1.add_event(Event(
+            f"0 {SET_TRADE_FACTORIES[0]} 10"
         ))
         for country in [self.country1, self.country2]:
             country.add_event(Event(
