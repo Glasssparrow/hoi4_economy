@@ -5,7 +5,7 @@ from math import floor
 
 class Country:
 
-    def __init__(self, name, tag="no tag", start_non_core_compliance=0.5):
+    def __init__(self, name, tag="no tag", start_non_core_compliance=70):
         self.name = name
         self.tag = tag
         self.regions = []
