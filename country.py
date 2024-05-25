@@ -39,6 +39,7 @@ class Country:
         self.ind_and_constr_tech_limit = 5
         self._distributed_industry = False
 
+        self.factories_total = 0
         self.factories_from_trade = 0
         self.factories = 0
         self.mil_factories = 0
@@ -239,6 +240,8 @@ class Country:
         # Округляем вниз
         civil_fact, mil_fact, shipyards = (
             int(civil_fact), int(mil_fact), int(shipyards))
+        self.factories = civil_fact  # Все фабрики государства
+        civil_fact += self.factories_from_trade  # Добавляем торговлю
         self.consumer_goods = self._get_consumer_goods()
         self.factories_for_consumers = floor(
                 (civil_fact + mil_fact) * self._get_consumer_goods()
@@ -246,7 +249,8 @@ class Country:
         factories_available = (
             civil_fact - self.factories_for_consumers
         )
-        self.factories = civil_fact
+        self.factories_total = civil_fact
+        self.factories = civil_fact - self.factories_from_trade
         self.mil_factories = mil_fact
         self.shipyards = shipyards
         if factories_available > 0:
