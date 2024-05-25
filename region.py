@@ -70,6 +70,9 @@ class Region:
                 self.factories_limit
                 - self.factories
                 - self.military_factories
+                - self.shipyards
+                - self.fuel_silo
+                - self.synth_oil
         )
         self.available_for_queue = (
                 self.available_for_construction
