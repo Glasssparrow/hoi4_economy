@@ -21,6 +21,8 @@ class Country:
         self.factory_limit_bonus = 0
         self._consumer_goods = 0
         self.non_core_compliance = start_non_core_compliance
+        self.peace = True
+        self._compliance_grow = 0
 
         self._have_civil_advisor = False
         self._have_mil_advisor = False
@@ -146,6 +148,17 @@ class Country:
         self._civil_constr_bonus += 0.1
         self._inf_constr_bonus += 0.1
         self._have_civil_advisor = True
+
+    @property
+    def compliance_grow(self):
+        compliance_grow = self._compliance_grow
+        if self.peace:
+            compliance_grow += 0.1
+        return compliance_grow
+
+    @compliance_grow.setter
+    def compliance_grow(self, new_compliance_grow):
+        self._compliance_grow = new_compliance_grow
 
     @property
     def distributed_industry(self):

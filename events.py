@@ -64,6 +64,10 @@ class Event:
         elif self.order[1] in ADD_CONSUMER_GOODS_COMMAND:
             owner.add_consumer_goods(
                 float(self.order[2]))
+        elif self.order[1] in SET_NEW_COMPLIANCE_GROW_BONUS:
+            owner.compliance_grow = float(self.order[2])
+        elif self.order[1] in START_WAR:
+            owner.peace = False
         else:
             raise Exception(f"{self.order} не корректное событие!")
 
