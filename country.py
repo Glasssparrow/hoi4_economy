@@ -203,9 +203,23 @@ class Country:
         mil_fact = 0
         shipyards = 0
         for region in self.regions:
-            civil_fact += region.factories
-            mil_fact += region.military_factories
-            shipyards += region.shipyards
+            if self.tag in region.cores:
+                civil_fact += region.factories
+                mil_fact += region.military_factories
+                shipyards += region.shipyards
+            else:
+                civil_fact += (
+                    region.factories * region.get_compliance_modifier()
+                )
+                mil_fact += (
+                    region.military_factories * region.get_compliance_modifier()
+                )
+                shipyards += (
+                    region.shipyards * region.get_compliance_modifier()
+                )
+        # Округляем вниз
+        civil_fact, mil_fact, shipyards = (
+            int(civil_fact), int(mil_fact), int(shipyards))
         self.consumer_goods = self._get_consumer_goods()
         self.factories_for_consumers = floor(
                 (civil_fact + mil_fact) * self._get_consumer_goods()

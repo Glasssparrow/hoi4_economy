@@ -44,6 +44,17 @@ class Region:
         self.available_for_infrastructure_queue = 0
         self._recalculate_available_slots()
 
+    def get_compliance_modifier(self):
+        industry_percent = self.compliance * 0.65 + 25
+        if self.compliance > 40:
+            industry_percent += 10
+        if self.compliance:
+            return industry_percent/100
+        else:
+            raise Exception(
+                "Попытка вычислить контроль национальной территории."
+            )
+
     def _recalculate_available_slots(self):
         self.available_for_construction = (
                 self.factories_limit
