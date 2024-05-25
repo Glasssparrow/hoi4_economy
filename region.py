@@ -126,8 +126,9 @@ class Region:
                 type_of_building == CIVIL_BUILDING
         ):
             if (
-                    self.factories + self.military_factories >=
-                    self.factories_limit
+                    (self.factories + self.military_factories +
+                     self.shipyards + self.fuel_silo + self.synth_oil
+                     ) >= self.factories_limit
             ):
                 return True
             else:
