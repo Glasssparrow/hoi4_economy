@@ -1,7 +1,7 @@
 from .common import get_france_for_tests_2_and_3
 from constants_and_settings.constants import *
 from simulation_code.events import Event
-from region import Region
+from simulation_code.region import Region
 
 
 class TradeFrance:

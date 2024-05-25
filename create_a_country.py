@@ -1,6 +1,6 @@
 from json import load
 from simulation_code.country import Country
-from region import Region
+from simulation_code.region import Region
 
 
 def get_data():
