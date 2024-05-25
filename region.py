@@ -55,6 +55,16 @@ class Region:
                 "Попытка вычислить контроль национальной территории."
             )
 
+    def calculate_day(self, compliance_modifier):
+        if self.compliance:
+            grow = (1+compliance_modifier) * 0.075
+            decay = self.compliance * 0.00083
+            self.compliance += grow - decay
+        else:
+            raise Exception(
+                "Попытка рассчитать рост контроля в национальной провинции."
+            )
+
     def _recalculate_available_slots(self):
         self.available_for_construction = (
                 self.factories_limit

@@ -48,6 +48,7 @@ class Country:
 
     def calculate_day(self, day):
         self.activate_events(day)
+        self._daily_compliance_grow()
         self._calculate_factories()
         free_factories = self.factories_available
         queue_position = -1
@@ -86,6 +87,10 @@ class Country:
             empty.sort()
             for x in reversed(empty):
                 self.queue.pop(x)
+
+    def _daily_compliance_grow(self):
+        for region in self.non_core_regions:
+            region.calculate_day(self.compliance_grow)
 
     def add_event(self, event):
         self.events.append(event)
