@@ -1,6 +1,6 @@
 from create_a_country import get_data, get_country
 from constants_and_settings.constants import *
-from events import Event
+from simulation_code.events import Event
 
 
 class Core:

@@ -1,6 +1,6 @@
 from .common import floor, get_france
 from constants_and_settings.constants import *
-from events import Event
+from simulation_code.events import Event
 
 
 class EventsFrance:
