@@ -1,4 +1,4 @@
-from constants import (
+from constants_and_settings.constants import (
     get_economy_law, get_trade_law, get_conscription_law)
 from math import floor
 

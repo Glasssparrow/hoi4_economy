@@ -1,5 +1,5 @@
 from .common import floor, get_france
-from constants import *
+from constants_and_settings.constants import *
 from events import Event
 
 

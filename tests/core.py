@@ -1,6 +1,5 @@
 from create_a_country import get_data, get_country
-from .common import floor
-from constants import *
+from constants_and_settings.constants import *
 from events import Event
 
 

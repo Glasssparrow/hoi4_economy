@@ -168,5 +168,5 @@ def get_economy_law():
     return economy
 
 
-PATH_TO_PROVINCES = "./provinces"
+PATH_TO_PROVINCES = "../provinces"
 GAME_DATA_FILE_TYPE = ".txt"

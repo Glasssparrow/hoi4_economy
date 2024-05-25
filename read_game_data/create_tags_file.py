@@ -1,5 +1,5 @@
 from os import path, listdir
-from constants import PATH_TO_PROVINCES, GAME_DATA_FILE_TYPE
+from constants_and_settings.constants import PATH_TO_PROVINCES, GAME_DATA_FILE_TYPE
 
 
 def create_tags_file():

@@ -2,7 +2,7 @@ from math import floor as math_floor
 from region import Region
 from queue import Order
 from country import Country
-from constants import *
+from constants_and_settings.constants import *
 
 
 def floor(number):

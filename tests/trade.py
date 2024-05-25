@@ -1,5 +1,5 @@
 from .common import get_france_for_tests_2_and_3
-from constants import *
+from constants_and_settings.constants import *
 from events import Event
 from region import Region
 
