@@ -1,5 +1,5 @@
 from json import load
-from country import Country
+from simulation_code.country import Country
 from region import Region
 
 
