@@ -1,4 +1,4 @@
-from create_a_country import get_data, get_country
+from simulation_code.create_a_country import get_data, get_country
 
 
 class ReadGermany:
