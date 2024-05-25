@@ -1,4 +1,4 @@
-from laws import Law
+from simulation_code.laws import Law
 
 
 FACTORY_COST = 10800
