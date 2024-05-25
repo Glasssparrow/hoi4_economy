@@ -34,7 +34,7 @@ def get_instructions_list():
     return simulations_instructions
 
 
-def simulate(simulations_instructions, print_all=False):
+def simulate(simulations_instructions, length_of_simulation, print_all=False):
     # Необходимые для расчета данные
     with open("tags.txt", "r") as json_file:
         all_tags = json_file.read()
@@ -54,7 +54,7 @@ def simulate(simulations_instructions, print_all=False):
         results[file_name] = country
         for order in orders:
             country.add_event(Event(order))
-        for x in range(730):
+        for x in range(length_of_simulation):
             country.calculate_day(x)
         if print_all:
             print(
@@ -79,4 +79,4 @@ def simulate(simulations_instructions, print_all=False):
 
 
 inst = get_instructions_list()
-simulate(inst)
+simulate(inst, 730)
