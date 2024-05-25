@@ -11,6 +11,7 @@ class Region:
         self.name = name
         self.global_id = global_id
         self.cores = cores
+        self.compliance = None
         # limits
         self.factories_limit = max_factories
         self.init_fact_limit = max_factories

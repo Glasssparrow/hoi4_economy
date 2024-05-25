@@ -9,6 +9,7 @@ class Country:
         self.name = name
         self.tag = tag
         self.regions = []
+        self.non_core_regions = []
         self.queue = []
         self.events = []
 
@@ -19,7 +20,7 @@ class Country:
         self.mil_output_bonus = 0
         self.factory_limit_bonus = 0
         self._consumer_goods = 0
-        self._non_core_efficiency = start_non_core_compliance
+        self.non_core_compliance = start_non_core_compliance
 
         self._have_civil_advisor = False
         self._have_mil_advisor = False
@@ -117,8 +118,17 @@ class Country:
         if order.target_region_id is None:
             raise Exception("Регион не найден")
 
-    def add_region(self, region):
-        self.regions.append(region)
+    def add_region(self, region, compliance=None):
+        if self.tag in region.cores:
+            self.regions.append(region)
+        elif compliance:
+            self.regions.append(region)
+            self.non_core_regions.append(region)
+            region.compliance = compliance
+        else:
+            self.regions.append(region)
+            self.non_core_regions.append(region)
+            region.compliance = self.non_core_compliance
 
     def add_military_advisor(self):
         if self._have_mil_advisor:
