@@ -1,11 +1,4 @@
-from tests.sinkiang import Sinkiang
-from tests.dayafterdayfrance import DayAfterDayFrance
-from tests.advisorandlaw import AdvisorAndLaw
-from tests.eventsfrance import EventsFrance
-from tests.readgermany import ReadGermany
-from tests.readsoviets import ReadSoviets
-from tests.core import Core
-from tests.noncore import NonCore
+from tests import *
 
 
 # Печатать ли результаты
