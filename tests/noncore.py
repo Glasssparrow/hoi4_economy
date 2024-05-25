@@ -2,7 +2,7 @@ from create_a_country import get_data, get_country
 
 
 class NonCore:
-    name = "читаем данные Франция"
+    name = "Проверка не национальных территорий (Франция)"
 
     def __init__(self):
         data = get_data()
