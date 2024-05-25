@@ -4,9 +4,7 @@ from tests import *
 # Печатать ли результаты
 print_text = True
 
-# Данные по Франции не верны.
-# Не знаю что с этим делать, думаю пока оставлю.
-# Странно что описание из файлов игры не совпадает с тем что я вижу в игре.
+# Не национальные территории дают меньше фабрик
 something_wrong = False
 for test in [Sinkiang, DayAfterDayFrance,
              AdvisorAndLaw, EventsFrance,
