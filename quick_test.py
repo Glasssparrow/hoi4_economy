@@ -1,4 +1,6 @@
 from os import path, listdir
+from simulation_code.create_a_country import get_data, get_country
+from simulation_code.events import Event
 
 
 # Читаются все файлы формата ".txt".
@@ -26,3 +28,27 @@ for string in raw_strings:
         if edited_line:  # Все не пустые строки в приказы
             orders_list.append(edited_line)
     simulations_instructions.append(orders_list)
+
+# Необходимые для расчета данные
+with open("tags.txt", "r") as json_file:
+    all_tags = json_file.read()
+data = get_data()
+
+results = []  # Для итоговых экземпляров стран
+for orders in simulations_instructions:
+    if orders[0].upper() not in all_tags:
+        by_tag = False
+    else:
+        by_tag = True
+    # Оставляем только ивенты в списке приказов,
+    # а также передаем название/тэг в переменную.
+    name_or_tag = orders.pop(0)
+    country = get_country(data=data, name_or_tag=name_or_tag, by_tag=by_tag)
+    results.append(country)
+    for order in orders:
+        country.add_event(Event(order))
+    for x in range(730):
+        country.calculate_day(x)
+
+for country in results:
+    pass
