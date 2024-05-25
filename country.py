@@ -39,6 +39,7 @@ class Country:
         self.ind_and_constr_tech_limit = 5
         self._distributed_industry = False
 
+        self.factories_from_trade = 0
         self.factories = 0
         self.mil_factories = 0
         self.shipyards = 0

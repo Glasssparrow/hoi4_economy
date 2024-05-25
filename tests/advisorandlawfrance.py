@@ -1,7 +1,7 @@
 from .common import floor, get_france_for_tests_2_and_3
 
 
-class AdvisorAndLaw:
+class AdvisorAndLawFrance:
     name = "с капитаном индустрии Французский"
 
     def __init__(self):

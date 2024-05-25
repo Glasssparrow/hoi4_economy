@@ -1,12 +1,13 @@
 from .sinkiang import Sinkiang
 from .dayafterdayfrance import DayAfterDayFrance
-from .advisorandlaw import AdvisorAndLaw
+from .advisorandlawfrance import AdvisorAndLawFrance
 from .eventsfrance import EventsFrance
 from .readgermany import ReadGermany
 from .readsoviets import ReadSoviets
 from .core import Core
 from .noncore import NonCore
 from .compliance import ComplianceTest
+from .trade import TradeFrance
 
 
 main = [
@@ -19,4 +20,5 @@ main = [
     "Core",
     "NonCore",
     "ComplianceTest",
+    "TradeFrance",
 ]
