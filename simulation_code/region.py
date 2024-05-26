@@ -45,18 +45,18 @@ class Region:
         self._recalculate_available_slots()
 
     def get_compliance_modifier(self):
-        industry_percent = self.compliance * 0.65 + 25
-        if self.compliance > 40:
-            industry_percent += 10
-        if self.compliance:
-            return industry_percent/100
-        else:
+        # Для национальных пров. self.compliance = None
+        if not self.compliance:
             raise Exception(
                 "Попытка вычислить контроль национальной территории."
             )
+        industry_percent = self.compliance * 0.65 + 25
+        if self.compliance > 40:
+            industry_percent += 10
+        return industry_percent/100
 
     def calculate_day(self, compliance_modifier):
-        if self.compliance:
+        if self.compliance:  # Для национальных пров. self.compliance = None
             grow = (1+compliance_modifier) * 0.075
             decay = self.compliance * 0.00083
             self.compliance += grow - decay
