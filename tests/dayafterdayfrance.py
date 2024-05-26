@@ -44,18 +44,9 @@ class DayAfterDayFrance:
         no_problems = True
         for day in range(731):
             if day in self.days.keys():
-                # print("День #", day)
-                # print(self.days[day][0],
-                #       self.days[day][1],
-                #       self.days[day][2],
-                #       " : ",
-                #       floor(self.country.regions[8].civil_constr_progress),
-                #       floor(self.country.regions[10].civil_constr_progress),
-                #       floor(self.country.regions[5].civil_constr_progress),
-                #       )
-
                 no_problem_in_the_day = True
                 for x in range(3):
+                    # floor не настоящий, он сперва округляет до 3 знака после ","
                     if (
                         floor(regions[region_ids[x]].civil_constr_progress)
                         != self.days[day][x] and
