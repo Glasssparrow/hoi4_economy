@@ -232,7 +232,8 @@ class Country:
                     region.factories * region.get_compliance_modifier()
                 )
                 mil_fact += (
-                    region.military_factories * region.get_compliance_modifier()
+                    region.military_factories *
+                    region.get_compliance_modifier()
                 )
                 shipyards += (
                     region.shipyards * region.get_compliance_modifier()
