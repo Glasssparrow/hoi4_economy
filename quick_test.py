@@ -1,6 +1,7 @@
 from os import path, listdir
 from simulation_code.create_a_country import get_data, get_country
 from simulation_code.events import Event
+from for_tests import timer
 
 
 def get_instructions_list():
@@ -34,6 +35,7 @@ def get_instructions_list():
     return simulations_instructions
 
 
+@timer
 def simulate(simulations_instructions, print_all=False):
     # Необходимые для расчета данные
     with open("tags.txt", "r") as json_file:
