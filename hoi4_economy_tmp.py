@@ -3,7 +3,7 @@ from simulation_code.create_a_country import get_data, get_country
 from simulation_code.events import Event
 
 
-def get_instructions_list():
+def get_instructions_dict():
     # Читаются все файлы формата ".txt".
     # Файл должен содержать название страны или её тэг
     # в первой не закомментированной строке.
@@ -78,5 +78,33 @@ def simulate(simulations_instructions, length_of_simulation, print_all=False):
           f"Заводов - {results[best_result].mil_factories}")
 
 
-inst = get_instructions_list()
-simulate(inst, 730)
+def help_get_regions(simulation_instruction, day_x=0):
+    with open("tags.txt", "r") as json_file:
+        all_tags = json_file.read()
+    data = get_data()
+
+    if simulation_instruction[0].upper() not in all_tags:
+        by_tag = False
+    else:
+        by_tag = True
+    # Оставляем только ивенты в списке приказов,
+    # а также передаем название/тэг в переменную.
+    name_or_tag = simulation_instruction.pop(0)
+    country = get_country(data=data, name_or_tag=name_or_tag, by_tag=by_tag)
+    for order in simulation_instruction:
+        country.add_event(Event(order))
+    for x in range(day_x):
+        country.calculate_day(x)
+    for region in country.regions:
+        print(
+            f"{region.name}, лимит - {region.factories_limit}, "
+            f"слотов свободно фабрики/инфраструктура - "
+            f"{region.available_for_queue}/{region.available_for_infrastructure}.\n"
+            f"Фабрики/заводы - {region.factories}/{region.military_factories}, "
+            f"инфраструктура - {region.infrastructure}."
+        )
+
+
+inst = get_instructions_dict()
+help_get_regions(inst["1"])
+# simulate(inst, 730)
