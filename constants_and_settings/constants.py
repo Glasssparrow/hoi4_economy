@@ -90,6 +90,14 @@ ADD_CONSUMER_GOODS_COMMAND = [
     "add_consumer_goods",
     "добавить_товары_народного_потребления",
 ]
+ADD_FACTORIES_COMMAND = [
+    "add_factories",
+    "добавить_фабрики",
+]
+ADD_MILITARY_FACTORIES_COMMAND = [
+    "add_military_factories",
+    "добавить_военные_заводы",
+]
 SET_NEW_COMPLIANCE_GROW_BONUS = [
     "set_new_compliance_grow_bonus",
     "установить_новый_бонус_роста_контроля",

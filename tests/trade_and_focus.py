@@ -10,10 +10,16 @@ class TradeFrance:
     def __init__(self):
         self.country1 = get_france_for_tests_2_and_3()
         self.country2 = get_france_for_tests_2_and_3()
+        self.country3 = get_france_for_tests_2_and_3()
         self.country1.move_trade(+1)
         self.country1.move_trade(+1)
         self.country2.move_trade(+1)
         self.country2.move_trade(+1)
+        self.country3.move_trade(+1)
+        self.country3.move_trade(+1)
+        self.country3.add_event(Event(
+            f"0 {ADD_FACTORIES_COMMAND[0]} 10"
+        ))
         self.country2.add_region(Region(
             "unicorn_land",
             999,
@@ -27,7 +33,7 @@ class TradeFrance:
         self.country1.add_event(Event(
             f"0 {SET_TRADE_FACTORIES[0]} 10"
         ))
-        for country in [self.country1, self.country2]:
+        for country in [self.country1, self.country2, self.country3]:
             country.add_event(Event(
                 f"365 {ADD_CIVIL_ADVISOR_COMMAND[0]}"
             ))
@@ -46,9 +52,15 @@ class TradeFrance:
         for day in range(731):
             self.country1.calculate_day(day)
             self.country2.calculate_day(day)
-            if self.country1.factories_total != self.country2.factories_total:
+            self.country3.calculate_day(day)
+            if not (
+                    self.country1.factories_total ==
+                    self.country2.factories_total ==
+                    self.country3.factories_total
+            ):
                 incorrect[day] = [self.country1.factories_total,
-                                  self.country2.factories_total,]
+                                  self.country2.factories_total,
+                                  self.country3.factories_total,]
         if incorrect:
             if text:
                 print(f"Не совпавшие дни: {incorrect}")

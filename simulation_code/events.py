@@ -64,6 +64,10 @@ class Event:
         elif self.order[1] in ADD_CONSUMER_GOODS_COMMAND:
             owner.add_consumer_goods(
                 float(self.order[2]))
+        elif self.order[1] in ADD_FACTORIES_COMMAND:
+            owner.add_factories_from_focus(int(self.order[2]))
+        elif self.order[1] in ADD_MILITARY_FACTORIES_COMMAND:
+            owner.add_mil_factories_from_focus(int(self.order[2]))
         elif self.order[1] in SET_NEW_COMPLIANCE_GROW_BONUS:
             owner.compliance_grow = float(self.order[2])
         elif self.order[1] in SET_TRADE_FACTORIES:

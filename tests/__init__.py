@@ -7,7 +7,7 @@ from .readsoviets import ReadSoviets
 from .core import Core
 from .noncore import NonCore
 from .compliance import ComplianceTest
-from .trade import TradeFrance
+from .trade_and_focus import TradeFrance
 
 
 main = [

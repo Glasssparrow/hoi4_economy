@@ -39,6 +39,9 @@ class Country:
         self.ind_and_constr_tech_limit = 5
         self._distributed_industry = False
 
+        self.focus_factories = 0
+        self.focus_mil_factories = 0
+
         self.factories_total = 0
         self.factories_from_trade = 0
         self.factories = 0
@@ -206,6 +209,12 @@ class Country:
     def add_consumer_goods(self, consumer_goods_modifier):
         self._consumer_goods += consumer_goods_modifier
 
+    def add_factories_from_focus(self, quantity):
+        self.focus_factories += quantity
+
+    def add_mil_factories_from_focus(self, quantity):
+        self.focus_mil_factories += quantity
+
     def add_construction_bonus(self, bonus):
         self._constr_bonus += bonus
 
@@ -222,6 +231,8 @@ class Country:
         civil_fact = 0
         mil_fact = 0
         shipyards = 0
+        civil_fact += self.focus_factories
+        mil_fact += self.focus_mil_factories
         for region in self.regions:
             if self.tag in region.cores:
                 civil_fact += region.factories
@@ -255,7 +266,7 @@ class Country:
         self.mil_factories = mil_fact
         self.shipyards = shipyards
         if factories_available > 0:
-            self.factories_available = round(factories_available, 0)
+            self.factories_available = int(factories_available)
         else:
             self.factories_available = 0
 
