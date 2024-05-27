@@ -209,6 +209,11 @@ class Country:
     def add_consumer_goods(self, consumer_goods_modifier):
         self._consumer_goods += consumer_goods_modifier
 
+    def add_factory_limit(self, additional_limit):
+        self.factory_limit_bonus += additional_limit
+        for region in self.regions:
+            region.recalculate_factories_limit(self.factory_limit_bonus)
+
     def add_factories_from_focus(self, quantity):
         self.focus_factories += quantity
 

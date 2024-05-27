@@ -90,6 +90,10 @@ ADD_CONSUMER_GOODS_COMMAND = [
     "add_consumer_goods",
     "добавить_товары_народного_потребления",
 ]
+ADD_FACTORIES_LIMIT = [
+    "add_factories_limit",
+    "добавить_лимит_фабрик",
+]
 ADD_FACTORIES_COMMAND = [
     "add_factories",
     "добавить_фабрики",
