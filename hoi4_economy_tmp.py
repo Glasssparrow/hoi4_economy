@@ -17,7 +17,7 @@ def get_instructions_dict():
             files_list.append(path.join("simulation_orders", file))
     raw_strings = []  # Строки данных из файлов с инструкциями
     for file in files_list:
-        with open(file) as link_to_the_file:
+        with open(file, encoding="utf8") as link_to_the_file:
             raw_strings.append(link_to_the_file.read())
     simulations_instructions = {}  # Список листов с приказами
     for file_number, string in enumerate(raw_strings):
@@ -106,5 +106,5 @@ def help_get_regions(simulation_instruction, day_x=0):
 
 
 inst = get_instructions_dict()
-help_get_regions(inst["1"])
-# simulate(inst, 730)
+# help_get_regions(inst["not_paranoic_sov"])
+simulate(inst, 730)

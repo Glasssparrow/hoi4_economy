@@ -32,5 +32,5 @@ sov
 511 industry_tech       # технология индустрии 2
 1285 construction_tech  # технология строительства 3
 1285 industry_tech      # технология индустрии 3
-1950construction_tech   # технология строительства 4
+1950 construction_tech   # технология строительства 4
 1950 industry_tech      # технология индустрии 4
