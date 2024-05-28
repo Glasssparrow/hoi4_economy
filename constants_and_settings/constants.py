@@ -182,3 +182,5 @@ def get_economy_law():
 
 PATH_TO_PROVINCES = "./provinces"
 GAME_DATA_FILE_TYPE = ".txt"
+
+PRESETS_FOLDER = "presets"
