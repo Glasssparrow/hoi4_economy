@@ -6,6 +6,19 @@ class Counter:
         self.number = 0
 
 
+def _get_regions_with_good_infrastructure(regions):
+    good_inf_regions = []
+    for region in regions:
+        if (
+            not good_inf_regions or
+            (region.available_for_queue>0 and
+             region.infrastructure > good_inf_regions[0].infrastructure)
+        ):
+            good_inf_regions = [region]
+        else:
+            good_inf_regions.append(region)
+
+
 def _add_queue(country, switch_point, counter=None):
     if not counter:
         counter = Counter()
