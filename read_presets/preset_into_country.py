@@ -17,3 +17,8 @@ def turn_preset_into_country(orders):
     for order in orders:
         country.add_event(Event(order))
     return country
+
+
+def add_events_to_country(country, events):
+    for order in events:
+        country.add_event(Event(order))
