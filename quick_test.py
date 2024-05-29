@@ -5,6 +5,8 @@ from constants_and_settings.constants import (
 from read_presets.preset_into_country import (
     turn_preset_into_country, add_events_to_country
 )
+from automated_construction.construct_civil_and_mil import (
+    auto_construct_without_infrastructure)
 
 country_preset = read_preset("sov", PRESETS_PATH)
 tech_preset = read_preset("casual", COMMON_TECH_PATH)
@@ -12,8 +14,4 @@ trade_preset = read_preset("sov", COMMON_TRADE_PATH)
 country = turn_preset_into_country(country_preset)
 add_events_to_country(country, trade_preset)
 add_events_to_country(country, tech_preset)
-a = 0
-for event in country.events:
-    a += 1
-
-print(a)
+auto_construct_without_infrastructure(country, 200, 50,)
