@@ -1,4 +1,5 @@
 from simulation_code.laws import Law
+from os import path
 
 
 FACTORY_COST = 10800
@@ -183,4 +184,9 @@ def get_economy_law():
 PATH_TO_PROVINCES = "./provinces"
 GAME_DATA_FILE_TYPE = ".txt"
 
-PRESETS_FOLDER = "presets"
+PRESETS_PATH = "presets"
+COMMON_TECH_FOLDER = "common_tech"
+COMMON_TRADE_FOLDER = "common_trade"
+COMMON_TECH_PATH = path.join(PRESETS_PATH, COMMON_TECH_FOLDER)
+COMMON_TRADE_PATH = path.join(PRESETS_PATH, COMMON_TRADE_FOLDER)
+
