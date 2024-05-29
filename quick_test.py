@@ -11,7 +11,7 @@ tech_preset = read_preset("casual", COMMON_TECH_PATH)
 trade_preset = read_preset("sov", COMMON_TRADE_PATH)
 country = turn_preset_into_country(country_preset)
 add_events_to_country(country, trade_preset)
-# add_events_to_country(country, tech_preset)
+add_events_to_country(country, tech_preset)
 a = 0
 for event in country.events:
     a += 1
