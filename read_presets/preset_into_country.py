@@ -16,9 +16,11 @@ def turn_preset_into_country(orders):
     country = get_country(data=data, name_or_tag=name_or_tag, by_tag=by_tag)
     for order in orders:
         country.add_event(Event(order))
+    country.preparations()
     return country
 
 
 def add_events_to_country(country, events):
     for order in events:
         country.add_event(Event(order))
+    country.preparations()
