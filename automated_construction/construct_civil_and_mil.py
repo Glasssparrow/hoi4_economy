@@ -11,12 +11,17 @@ def _get_regions_with_good_infrastructure(regions):
     for region in regions:
         if (
             not good_inf_regions or
-            (region.available_for_queue>0 and
+            (region.available_for_queue > 0 and
              region.infrastructure > good_inf_regions[0].infrastructure)
         ):
             good_inf_regions = [region]
-        else:
+        elif (
+                (good_inf_regions[0].infrastructure ==
+                 region.infrastructure) and
+                region.available_for_queue > 0
+        ):
             good_inf_regions.append(region)
+    return good_inf_regions
 
 
 def _add_queue(country, switch_point, counter=None):
@@ -24,6 +29,7 @@ def _add_queue(country, switch_point, counter=None):
         counter = Counter()
     regions = country.regions
     queue = country.queue
+    good_inf_regions = _get_regions_with_good_infrastructure(regions)
     return counter
 
 
@@ -35,4 +41,3 @@ def auto_construct_without_infrastructure(
         country.calculate_day(day)
         if day % cycle_length == 0:
             counter = _add_queue(country, switch_point, counter=counter)
-
