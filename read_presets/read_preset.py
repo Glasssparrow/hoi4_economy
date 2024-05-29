@@ -19,7 +19,6 @@ def read_preset(preset_name):
     path_to_preset = path.join(PRESETS_FOLDER, preset_name+files_type)
     with open(path_to_preset, encoding="utf8") as link_to_the_file:
         preset = link_to_the_file.read()
-
     # Преобразуем строку в лист приказов
     splitted_string = preset.split("\n")
     orders = []
@@ -30,7 +29,10 @@ def read_preset(preset_name):
             edited_line = edited_line.strip()
         if edited_line:  # Все не пустые строки в приказы
             orders.append(edited_line)
+    return orders
 
+
+def turn_preset_into_country(orders):
     # Преобразуем лист приказов в экземпляр Country
     with open("tags.txt", "r") as json_file:
         all_tags = json_file.read()  # Список кодов стран
