@@ -6,6 +6,11 @@ FACTORY_COST = 10800
 MILITARY_FACTORY_COST = 7200
 INFRASTRUCTURE_COST = 6000
 
+# Building types
+MILITARY_BUILDING = "mil_fact"
+CIVIL_BUILDING = "civil_fact"
+INF_BUILDING = "infrastructure"
+
 FACTORY_OUTPUT = 5
 MILITARY_FACTORY_OUTPUT = 10
 INFRASTRUCTURE_BONUS = 0.2
@@ -115,11 +120,6 @@ START_WAR = [
     "start_war",
     "Начать_войну",
 ]
-
-# Building types
-MILITARY_BUILDING = "mil_fact"
-CIVIL_BUILDING = "civil_fact"
-INF_BUILDING = "infrastructure"
 
 
 def get_conscription_law():
