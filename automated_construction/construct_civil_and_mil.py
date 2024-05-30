@@ -86,9 +86,12 @@ def _add_queue(country, switch_point, counter=None,
     if not start_point:
         if len(queue) < country.factories/15:
             raise Exception("Строительство простаивает!")
-    good_inf_regions = _get_regions_with_good_infrastructure(regions)
-    _add_queue_for_regions(good_inf_regions, country, switch_point,
-                           counter, queue_length)
+    for x in range(3):
+        good_inf_regions = _get_regions_with_good_infrastructure(regions)
+        _add_queue_for_regions(good_inf_regions, country, switch_point,
+                               counter, queue_length)
+        if len(queue) >= (country.factories / 15 + queue_length):
+            break
     return counter
 
 
