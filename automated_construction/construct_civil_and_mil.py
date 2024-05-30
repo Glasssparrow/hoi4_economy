@@ -35,46 +35,56 @@ def _add_queue_for_regions(regions, country, switch_point,
                            counter, queue_length):
     queue = country.queue
     for region in regions:
+        if region.available_for_queue == 0:
+            raise Exception(
+                f"{region.name} 0 slots"
+            )
         if len(queue) < (country.factories / 15 + queue_length):
             if (
-                    counter.factories > switch_point
-            ):
-                counter.mil_factories += region.available_for_queue
-                country.add_order(Order(
-                    region_name=region.name,
-                    building_type=CIVIL_BUILDING,
-                    quantity=region.available_for_queue,
-                ))
-            elif (
-                    counter.factories + region.available_for_queue >
-                    switch_point
-            ):
-                mil_build = (
-                        counter.factories + region.available_for_queue -
-                        switch_point
-                )
-                civil_build = region.available_for_queue - mil_build
-                counter.factories += civil_build
-                counter.mil_factories += mil_build
-                country.add_order(Order(
-                    region_name=region.name,
-                    building_type=CIVIL_BUILDING,
-                    quantity=civil_build,
-                ))
-                country.add_order(Order(
-                    region_name=region.name,
-                    building_type=MILITARY_BUILDING,
-                    quantity=mil_build,
-                ))
-            elif (
-                    counter.factories + region.available_for_queue < switch_point
+                counter.factories + region.available_for_queue < switch_point
             ):
                 counter.factories += region.available_for_queue
                 country.add_order(Order(
                     region_name=region.name,
+                    building_type=CIVIL_BUILDING,
+                    quantity=region.available_for_queue,
+                ))
+            elif (
+                    counter.factories >= switch_point
+            ):
+                counter.mil_factories += region.available_for_queue
+                country.add_order(Order(
+                    region_name=region.name,
                     building_type=MILITARY_BUILDING,
                     quantity=region.available_for_queue,
                 ))
+            else:
+                civil_build = switch_point - counter.factories
+                mil_build = (
+                        region.available_for_queue - civil_build
+                )
+                counter.factories += civil_build
+                counter.mil_factories += mil_build
+                if civil_build > 0:
+                    country.add_order(Order(
+                        region_name=region.name,
+                        building_type=CIVIL_BUILDING,
+                        quantity=civil_build,
+                    ))
+                else:
+                    raise Exception(
+                        f"Строительство 0 фабрик {region.name}"
+                    )
+                if mil_build > 0:
+                    country.add_order(Order(
+                        region_name=region.name,
+                        building_type=MILITARY_BUILDING,
+                        quantity=mil_build,
+                    ))
+                else:
+                    raise Exception(
+                        f"Строительство 0 фабрик {region.name}"
+                    )
         else:
             break
 
