@@ -29,20 +29,13 @@ def _get_regions_with_good_infrastructure(regions):
     return good_inf_regions
 
 
-def _add_queue(country, switch_point, counter=None,
-               queue_length=2, start_point=False,):
-    if not counter:
-        counter = Counter()
-    regions = country.regions
+def _add_queue_for_regions(regions, country, switch_point,
+                           counter, queue_length):
     queue = country.queue
-    if not start_point:
-        if len(queue) < country.factories/15:
-            raise Exception("Строительство простаивает!")
-    good_inf_regions = _get_regions_with_good_infrastructure(regions)
-    for region in good_inf_regions:
-        if len(queue) < (country.factories/15+queue_length):
+    for region in regions:
+        if len(queue) < (country.factories / 15 + queue_length):
             if (
-                counter.factories > switch_point
+                    counter.factories > switch_point
             ):
                 counter.mil_factories += region.available_for_queue
                 country.add_order(Order(
@@ -51,12 +44,12 @@ def _add_queue(country, switch_point, counter=None,
                     quantity=region.available_for_queue,
                 ))
             elif (
-                counter.factories+region.available_for_queue >
-                switch_point
+                    counter.factories + region.available_for_queue >
+                    switch_point
             ):
                 mil_build = (
-                    counter.factories + region.available_for_queue -
-                    switch_point
+                        counter.factories + region.available_for_queue -
+                        switch_point
                 )
                 civil_build = region.available_for_queue - mil_build
                 counter.factories += civil_build
@@ -72,7 +65,7 @@ def _add_queue(country, switch_point, counter=None,
                     quantity=mil_build,
                 ))
             elif (
-                counter.factories + region.available_for_queue < switch_point
+                    counter.factories + region.available_for_queue < switch_point
             ):
                 counter.factories += region.available_for_queue
                 country.add_order(Order(
@@ -82,10 +75,20 @@ def _add_queue(country, switch_point, counter=None,
                 ))
         else:
             break
-        # print(
-        #     region.name, region.infrastructure, region.available_for_queue,
-        #     region.global_id,
-        # )
+
+
+def _add_queue(country, switch_point, counter=None,
+               queue_length=2, start_point=False,):
+    if not counter:
+        counter = Counter()
+    regions = country.regions
+    queue = country.queue
+    if not start_point:
+        if len(queue) < country.factories/15:
+            raise Exception("Строительство простаивает!")
+    good_inf_regions = _get_regions_with_good_infrastructure(regions)
+    _add_queue_for_regions(good_inf_regions, country, switch_point,
+                           counter, queue_length)
     return counter
 
 
