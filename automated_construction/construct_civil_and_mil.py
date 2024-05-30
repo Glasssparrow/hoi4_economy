@@ -85,8 +85,8 @@ def _add_queue(country, switch_point, queue_length,
     queue = country.queue
     if not start_point:
         if (
-            len(queue) < country.factories/15 and
-            len(queue) != country.get_amount_of_regions_with_free_slots()
+            country.factories/15 > len(queue) and
+            country.get_amount_of_regions_with_free_slots() != 0
         ):
             raise Exception("Строительство простаивает!")
     for x in range(3):
