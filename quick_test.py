@@ -17,13 +17,9 @@ country = turn_preset_into_country(country_preset)
 add_events_to_country(country, trade_preset)
 add_events_to_country(country, tech_preset)
 
+print(country.factories, country.mil_factories)
+# Не забываем про 2 фабрики от фокуса
 auto_construct_without_infrastructure(
     country, 480, 50, 7,
 )
-
-# country_preset = read_preset("sik", PRESETS_PATH)
-# country = turn_preset_into_country(country_preset)
-#
-# auto_construct_without_infrastructure(
-#     country, 480, 50, 7,
-# )
+print(country.factories, country.mil_factories)
