@@ -125,6 +125,8 @@ class Country:
         for i, region in enumerate(self.regions):
             if order.target_region == region.name:
                 order.target_region_id = i
+                region.add_queue(order.quantity,
+                                 order.building_type)
                 break
         self.queue.append(order)
         if order.target_region_id is None:
