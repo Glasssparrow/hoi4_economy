@@ -77,14 +77,17 @@ def _add_queue_for_regions(regions, country, switch_point,
             break
 
 
-def _add_queue(country, switch_point, counter=None,
-               queue_length=2, start_point=False,):
+def _add_queue(country, switch_point, queue_length,
+               counter=None, start_point=False,):
     if not counter:
         counter = Counter()
     regions = country.regions
     queue = country.queue
     if not start_point:
-        if len(queue) < country.factories/15:
+        if (
+            len(queue) < country.factories/15 and
+            len(queue) != country.get_amount_of_regions_with_free_slots()
+        ):
             raise Exception("Строительство простаивает!")
     for x in range(3):
         good_inf_regions = _get_regions_with_good_infrastructure(regions)
@@ -96,10 +99,12 @@ def _add_queue(country, switch_point, counter=None,
 
 
 def auto_construct_without_infrastructure(
-        country, simulation_length, cycle_length, switch_point=999
+        country, simulation_length, cycle_length, switch_point=999, queue_length=3
 ):
-    counter = _add_queue(country, switch_point, start_point=True)
+    counter = _add_queue(country=country, switch_point=switch_point,
+                         start_point=True, queue_length=queue_length)
     for day in range(simulation_length):
         country.calculate_day(day)
         if day % cycle_length == 0:
-            counter = _add_queue(country, switch_point, counter=counter)
+            counter = _add_queue(country=country, switch_point=switch_point,
+                                 counter=counter, queue_length=queue_length)

@@ -343,3 +343,10 @@ class Country:
         constr_modifier = 1
         constr_modifier += self._constr_bonus + self._inf_constr_bonus
         return constr_modifier
+
+    def get_amount_of_regions_with_free_slots(self):
+        amount_of_regions = 0
+        for region in self.regions:
+            if region.available_for_queue > 0:
+                amount_of_regions += 1
+        return amount_of_regions
