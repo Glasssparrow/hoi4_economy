@@ -17,20 +17,9 @@ from constants_and_settings.constants import CIVIL_BUILDING
 # add_events_to_country(country, trade_preset)
 # add_events_to_country(country, tech_preset)
 
-# country_preset = read_preset("sik", PRESETS_PATH)
-# country = turn_preset_into_country(country_preset)
-#
-# auto_construct_without_infrastructure(
-#     country, 480, 50, 7,
-# )
+country_preset = read_preset("sik", PRESETS_PATH)
+country = turn_preset_into_country(country_preset)
 
-region = Region(
-    "Dzungaria",
-    2,
-    ["sik"],
-    1,
-    2,
-    0,
-    0
+auto_construct_without_infrastructure(
+    country, 480, 50, 7,
 )
-region.add_queue(2, CIVIL_BUILDING)
