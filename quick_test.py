@@ -15,5 +15,5 @@ country = turn_preset_into_country(country_preset)
 add_events_to_country(country, trade_preset)
 add_events_to_country(country, tech_preset)
 auto_construct_without_infrastructure(
-    country, 500, 250,
+    country, 480, 250,
 )
