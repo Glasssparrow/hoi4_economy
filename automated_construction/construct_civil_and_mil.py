@@ -14,6 +14,8 @@ class Counter:
 def _get_regions_with_good_infrastructure(regions):
     good_inf_regions = []
     for region in regions:
+        if region.available_for_queue == 0:
+            continue
         if (
             not good_inf_regions or
             (region.available_for_queue > 0 and
