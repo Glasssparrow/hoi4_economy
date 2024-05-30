@@ -14,4 +14,6 @@ trade_preset = read_preset("sov", COMMON_TRADE_PATH)
 country = turn_preset_into_country(country_preset)
 add_events_to_country(country, trade_preset)
 add_events_to_country(country, tech_preset)
-auto_construct_without_infrastructure(country, 200, 50,)
+auto_construct_without_infrastructure(
+    country, 500, 250,
+)
