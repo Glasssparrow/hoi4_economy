@@ -9,13 +9,6 @@ from automated_construction.construct_civil_and_mil import (
     auto_construct_without_infrastructure)
 import plotly
 import plotly.graph_objs as go
-import plotly.express as px
-from plotly.subplots import make_subplots
-
-
-country_preset = read_preset("sov", PRESETS_PATH)
-tech_preset = read_preset("casual", COMMON_TECH_PATH)
-trade_preset = read_preset("sov", COMMON_TRADE_PATH)
 
 # country = turn_preset_into_country(country_preset.copy())
 # country.get_region("smolensk")
@@ -44,37 +37,28 @@ def run(main_preset, tech, trade, length, cycle, switch_point,
     return country
 
 
-civil, mil, switch = [], [], []
+def get_points(main_preset_name):
+    country_preset = read_preset(main_preset_name, PRESETS_PATH)
+    tech_preset = read_preset("casual", COMMON_TECH_PATH)
+    trade_preset = read_preset("sov", COMMON_TRADE_PATH)
 
-best_mil = 0
-best_civil = 0
-best_switch = 0
+    mil, switch = [], []
+    for switch_point in range(100):
+        print(switch_point)
+        current_country = run(
+            main_preset=country_preset,
+            tech=tech_preset,
+            trade=trade_preset,
+            length=1825, cycle=210,
+            switch_point=switch_point,
+            queue_length=5, queue_grow=2
+        )
+        mil.append(current_country.mil_factories)
+        switch.append(switch_point)
+    return switch, mil
 
-for switch_point in range(100):
-    print(switch_point)
-    current_country = run(
-        main_preset=country_preset,
-        tech=tech_preset,
-        trade=trade_preset,
-        length=1825, cycle=210,
-        switch_point=switch_point,
-        queue_length=5, queue_grow=2
-    )
-    if best_mil < current_country.mil_factories:
-        best_mil = current_country.mil_factories
-        best_civil = current_country.factories
-        best_switch = switch_point
-    elif (best_mil == current_country.mil_factories and
-          best_civil < current_country.factories):
-        best_mil = current_country.mil_factories
-        best_civil = current_country.factories
-        best_switch = switch_point
-    civil.append(current_country.factories)
-    mil.append(current_country.mil_factories)
-    switch.append(switch_point)
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=switch, y=civil, name="фабрики"))
-fig.add_trace(go.Scatter(x=switch, y=mil, name="военные заводы"))
+x, y = get_points("sov")
+fig.add_trace(go.Scatter(x=x, y=y, name="военные заводы"))
 fig.show()
-print(best_switch, best_mil)
