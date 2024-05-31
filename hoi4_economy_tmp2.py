@@ -44,7 +44,7 @@ def get_points(main_preset_name):
 
     mil, switch = [], []
     for switch_point in range(100):
-        print(switch_point)
+        print(main_preset_name, switch_point)
         current_country = run(
             main_preset=country_preset,
             tech=tech_preset,
@@ -59,6 +59,12 @@ def get_points(main_preset_name):
 
 
 fig = go.Figure()
-x, y = get_points("sov")
-fig.add_trace(go.Scatter(x=x, y=y, name="военные заводы"))
+for preset_name, graph_name in {
+    "sov_basic": "Снятие паранойи",
+    "sov_basic_free_trade": "Снятие паранойи+свободная торговля",
+    "sov_mobilize_economy_first": "Снятие паранойи, но мобилизация до советника",
+    "sov_without_focus_tree": "Без бонусов от фокусов на снятие паранойи",
+}.items():
+    x, y, max_mil = get_points(preset_name)
+    fig.add_trace(go.Scatter(x=x, y=y, name=graph_name))
 fig.show()
