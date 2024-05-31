@@ -43,6 +43,7 @@ def get_points(main_preset_name):
     trade_preset = read_preset("sov", COMMON_TRADE_PATH)
 
     mil, switch = [], []
+    best_mil = 0
     for switch_point in range(100):
         print(main_preset_name, switch_point)
         current_country = run(
@@ -55,16 +56,18 @@ def get_points(main_preset_name):
         )
         mil.append(current_country.mil_factories)
         switch.append(switch_point)
-    return switch, mil
+        if current_country.mil_factories > best_mil:
+            best_mil = current_country.mil_factories
+    return switch, mil, best_mil
 
 
 fig = go.Figure()
 for preset_name, graph_name in {
     "sov_basic": "Снятие паранойи",
-    "sov_basic_free_trade": "Снятие паранойи+свободная торговля",
     "sov_mobilize_economy_first": "Снятие паранойи, но мобилизация до советника",
+    "sov_basic_free_trade": "Снятие паранойи+свободная торговля",
     "sov_without_focus_tree": "Без бонусов от фокусов на снятие паранойи",
 }.items():
     x, y, max_mil = get_points(preset_name)
-    fig.add_trace(go.Scatter(x=x, y=y, name=graph_name))
+    fig.add_trace(go.Scatter(x=x, y=y, name=f"{graph_name}({max_mil})"))
 fig.show()
