@@ -41,7 +41,7 @@ def _add_queue_for_regions(regions, country, switch_point,
             )
         if len(queue) < (country.factories / 15 + queue_length):
             if (
-                counter.factories + region.available_for_queue < switch_point
+                counter.factories + region.available_for_queue <= switch_point
             ):
                 counter.factories += region.available_for_queue
                 country.add_order(Order(
