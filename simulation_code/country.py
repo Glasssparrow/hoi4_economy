@@ -133,6 +133,9 @@ class Country:
             raise Exception("Регион не найден")
 
     def add_region(self, region, compliance=None):
+        # Для случая когда регионы имеют одинаковое имя
+        region.name = f"{region.name}_id_{region.global_id}"
+
         if self.tag in region.cores:
             self.regions.append(region)
         elif compliance:
