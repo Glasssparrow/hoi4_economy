@@ -8,6 +8,7 @@ __pycache__/
 
 # Temporary files
 tmp/
+tmp_test.py
 
 # Distribution / packaging
 .Python
