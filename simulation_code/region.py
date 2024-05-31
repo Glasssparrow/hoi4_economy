@@ -88,9 +88,9 @@ class Region:
         )
 
     def add_queue(self, quantity, building_type):
-        if quantity == 0:
+        if quantity <= 0:
             raise Exception(
-                f"Добавление приказа на строительство 0 зданий "
+                f"Добавление приказа на строительство <= 0 зданий "
                 f"в регионе {self.name}"
             )
         if building_type in [MILITARY_BUILDING, CIVIL_BUILDING]:
