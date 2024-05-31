@@ -41,6 +41,7 @@ def _add_queue_for_regions(regions, country, switch_point,
                 f"{region.name} 0 slots"
             )
         if len(queue) < (country.factories / 15 + queue_length):
+
             if (
                 counter.factories + region.available_for_queue <= switch_point
             ):
@@ -50,6 +51,7 @@ def _add_queue_for_regions(regions, country, switch_point,
                     building_type=CIVIL_BUILDING,
                     quantity=region.available_for_queue,
                 ))
+
             elif (
                     counter.factories >= switch_point
             ):
@@ -59,6 +61,7 @@ def _add_queue_for_regions(regions, country, switch_point,
                     building_type=MILITARY_BUILDING,
                     quantity=region.available_for_queue,
                 ))
+
             else:
                 civil_build = switch_point - counter.factories
                 mil_build = (
