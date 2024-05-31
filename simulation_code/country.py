@@ -350,3 +350,21 @@ class Country:
             if region.available_for_queue > 0:
                 amount_of_regions += 1
         return amount_of_regions
+
+    def get_region(self, region_name):
+        region_found = False
+        target_region = None
+        for region in self.regions:
+            if region.name == region_name:
+                target_region = region
+                if region_found:
+                    raise Exception(f"Два региона с одним именем "
+                                    f"{region_name}!")
+                else:
+                    region_found = True
+        if not target_region:
+            raise Exception(f"Регион не найден {region_name}")
+        else:
+            return target_region
+
+
