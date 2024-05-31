@@ -9,6 +9,7 @@ class Counter:
     def __init__(self):
         self.factories = 0
         self.mil_factories = 0
+        self.cycles = 0
 
 
 def _get_regions_with_good_infrastructure(regions):
@@ -111,12 +112,17 @@ def _add_queue(country, switch_point, queue_length,
 
 
 def auto_construct_without_infrastructure(
-        country, simulation_length, cycle_length, switch_point=999, queue_length=3
+        country, simulation_length, cycle_length, switch_point=999,
+        queue_length=3, queue_grow=1
 ):
     counter = _add_queue(country=country, switch_point=switch_point,
                          start_point=True, queue_length=queue_length)
     for day in range(simulation_length):
         country.calculate_day(day)
         if day % cycle_length == 0:
-            counter = _add_queue(country=country, switch_point=switch_point,
-                                 counter=counter, queue_length=queue_length)
+            counter.cycles += 1
+            counter = _add_queue(
+                country=country, switch_point=switch_point,
+                counter=counter,
+                queue_length=queue_length+queue_grow*counter.cycles,
+            )
