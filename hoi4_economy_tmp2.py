@@ -7,24 +7,11 @@ from read_presets.preset_into_country import (
 )
 from automated_construction.construct_civil_and_mil import (
     auto_construct_without_infrastructure)
-import plotly
 import plotly.graph_objs as go
 
-# country = turn_preset_into_country(country_preset.copy())
-# country.get_region("smolensk")
-# x = 0
-# for region in country.regions:
-#     reg = country.get_region(region.name)
-#     if region.name == "smolensk_not_209":
-#         print(region.name, region.available_for_queue, region.global_id)
-#         pass
-#     print(region.name)
-#     x+=1
-# print(x)
 
-
-def run(main_preset, tech, trade, length, cycle, switch_point,
-        queue_length, queue_grow,):
+def run_and_get_country(main_preset, tech, trade, length, cycle, switch_point,
+                        queue_length, queue_grow, ):
     country = turn_preset_into_country(main_preset.copy())
     add_events_to_country(country, trade.copy())
     add_events_to_country(country, tech.copy())
@@ -37,6 +24,20 @@ def run(main_preset, tech, trade, length, cycle, switch_point,
     return country
 
 
+def run_and_get_points(main_preset, tech, trade, length, cycle, switch_point,
+                       queue_length, queue_grow, ):
+    country = turn_preset_into_country(main_preset.copy())
+    add_events_to_country(country, trade.copy())
+    add_events_to_country(country, tech.copy())
+
+    f, m, d = auto_construct_without_infrastructure(
+        country=country, simulation_length=length,
+        cycle_length=cycle, switch_point=switch_point,
+        queue_length=queue_length, queue_grow=queue_grow,
+    )
+    return f, m, d
+
+
 def get_points(main_preset_name):
     country_preset = read_preset(main_preset_name, PRESETS_PATH)
     tech_preset = read_preset("casual", COMMON_TECH_PATH)
@@ -46,7 +47,7 @@ def get_points(main_preset_name):
     best_mil = 0
     for switch_point in range(100):
         print(main_preset_name, switch_point)
-        current_country = run(
+        current_country = run_and_get_country(
             main_preset=country_preset,
             tech=tech_preset,
             trade=trade_preset,
@@ -61,6 +62,21 @@ def get_points(main_preset_name):
     return switch, mil, best_mil
 
 
+def get_construction_graph(main_preset_name, switch_point, length):
+    country_preset = read_preset(main_preset_name, PRESETS_PATH)
+    tech_preset = read_preset("casual", COMMON_TECH_PATH)
+    trade_preset = read_preset("sov", COMMON_TRADE_PATH)
+    civ_fact, mil_fact, d = run_and_get_points(
+        main_preset=country_preset,
+        tech=tech_preset,
+        trade=trade_preset,
+        length=length, cycle=210,
+        switch_point=switch_point,
+        queue_length=5, queue_grow=2
+    )
+    return civ_fact, mil_fact, d
+
+
 fig = go.Figure()
 for preset_name, graph_name in {
     "sov_basic": "Снятие паранойи",
@@ -70,4 +86,16 @@ for preset_name, graph_name in {
 }.items():
     x, y, max_mil = get_points(preset_name)
     fig.add_trace(go.Scatter(x=x, y=y, name=f"{graph_name}({max_mil})"))
+fig.show()
+
+# График строительства
+fig = go.Figure()
+x, y, days = get_construction_graph("sov_basic",
+                                    28, 1825)
+fig.add_trace(go.Scatter(x=days, y=x, name=f"фабрики, случай 1"))
+fig.add_trace(go.Scatter(x=days, y=y, name=f"заводы, случай 1"))
+x, y, days = get_construction_graph("sov_basic",
+                                    50, 1825)
+fig.add_trace(go.Scatter(x=days, y=x, name=f"фабрики, случай 2"))
+fig.add_trace(go.Scatter(x=days, y=y, name=f"заводы, случай 2"))
 fig.show()
