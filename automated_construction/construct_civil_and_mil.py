@@ -13,16 +13,33 @@ class Counter:
 
 
 def _get_regions_with_good_infrastructure(regions):
+    there_no_slots_in_core_regions = True
+    for region in regions:
+        if region.compliance is None and region.available_for_queue > 0:
+            there_no_slots_in_core_regions = False
+            break
     good_inf_regions = []
     for region in regions:
+        # Если нет слотов в нац территориях и территория нац, пропускаем
+        if there_no_slots_in_core_regions and region.compliance is None:
+            continue
+        # Если есть слоты в нац территориях и территория не нац, пропускаем
+        elif not there_no_slots_in_core_regions and region.compliance is not None:
+            continue
+        # Если на территории нет свободных слотов, пропускаем
         if region.available_for_queue == 0:
             continue
+        # Если список good_inf_regions пуст или найдена территория
+        # с лучшей инфраструктурой и свободными слотами,
+        # начинаем список с начала, первый элемент - текущая территория.
         if (
             not good_inf_regions or
             (region.available_for_queue > 0 and
              region.infrastructure > good_inf_regions[0].infrastructure)
         ):
             good_inf_regions = [region]
+        # Если территория с такой же инфраструктурой и свободными слотами,
+        # добавляем её в лист.
         elif (
                 (good_inf_regions[0].infrastructure ==
                  region.infrastructure) and
@@ -105,7 +122,7 @@ def _add_queue(country, switch_point, queue_length,
             country.get_amount_of_regions_with_free_slots() != 0
         ):
             raise Exception("Строительство простаивает!")
-    for x in range(3):
+    for x in range(5):
         good_inf_regions = _get_regions_with_good_infrastructure(regions)
         _add_queue_for_regions(good_inf_regions, country, switch_point,
                                counter, queue_length)
