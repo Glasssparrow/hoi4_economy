@@ -123,6 +123,7 @@ def auto_construct_without_infrastructure(
     factories, mil_factories, days = [], [], []
     for day in range(simulation_length):
         country.calculate_day(day)
+        # Заполняем листы для графиков
         factories.append(country.factories)
         mil_factories.append(country.mil_factories)
         days.append(day)
