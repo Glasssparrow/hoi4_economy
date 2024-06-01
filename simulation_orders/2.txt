@@ -1,5 +1,0 @@
-
-fra #comment
-#comment
-
-12 build_civil_factory france 2
