@@ -120,8 +120,12 @@ def auto_construct_without_infrastructure(
 ):
     counter = _add_queue(country=country, switch_point=switch_point,
                          start_point=True, queue_length=queue_length)
+    factories, mil_factories, days = [], [], []
     for day in range(simulation_length):
         country.calculate_day(day)
+        factories.append(country.factories)
+        mil_factories.append(country.mil_factories)
+        days.append(day)
         if day % cycle_length == 0:
             counter.cycles += 1
             counter = _add_queue(
@@ -129,3 +133,4 @@ def auto_construct_without_infrastructure(
                 counter=counter,
                 queue_length=queue_length+queue_grow*counter.cycles,
             )
+    return factories, mil_factories, days
