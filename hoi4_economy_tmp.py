@@ -62,21 +62,6 @@ def get_points(main_preset_name):
     return switch, mil, best_mil
 
 
-def get_construction_graph(main_preset_name, switch_point, length):
-    country_preset = read_preset(main_preset_name, PRESETS_PATH)
-    tech_preset = read_preset("casual", COMMON_TECH_PATH)
-    trade_preset = read_preset("sov", COMMON_TRADE_PATH)
-    civ_fact, mil_fact, d = run_and_get_points(
-        main_preset=country_preset,
-        tech=tech_preset,
-        trade=trade_preset,
-        length=length, cycle=210,
-        switch_point=switch_point,
-        queue_length=5, queue_grow=2
-    )
-    return civ_fact, mil_fact, d
-
-
 fig = go.Figure()
 for preset_name, graph_name in {
     "sov_basic": "Снятие паранойи",
