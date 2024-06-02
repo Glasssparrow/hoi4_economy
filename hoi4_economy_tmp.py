@@ -8,6 +8,7 @@ from read_presets.preset_into_country import (
 from automated_construction.construct_civil_and_mil import (
     auto_construct_without_infrastructure)
 import plotly.graph_objs as go
+from os import path, listdir
 
 
 def run_and_get_country(main_preset, tech, trade, length, cycle, switch_point,
@@ -38,7 +39,7 @@ def run_and_get_points(main_preset, tech, trade, length, cycle, switch_point,
     return f, m, d
 
 
-def get_points(main_preset_name):
+def get_points(main_preset_name, tech_preset_name, trade_preset_name):
     country_preset = read_preset(main_preset_name, PRESETS_PATH)
     tech_preset = read_preset("casual", COMMON_TECH_PATH)
     trade_preset = read_preset("sov", COMMON_TRADE_PATH)
@@ -62,13 +63,18 @@ def get_points(main_preset_name):
     return switch, mil, best_mil
 
 
+GAME_DATA_FILE_TYPE = ".txt"
+files_list = listdir(PRESETS_PATH)  # Список путей к файлам
+presets_list = []  # Список путей к текстовым файлам
+# Заполняем список путей к текстовым файлам
+for file in files_list:
+    if file[-len(GAME_DATA_FILE_TYPE):] == GAME_DATA_FILE_TYPE:
+        presets_list.append(file[:-len(GAME_DATA_FILE_TYPE)])
+
 fig = go.Figure()
-for preset_name, graph_name in {
-    "sov_basic": "Снятие паранойи",
-    "sov_mobilize_economy_first": "Снятие паранойи, но мобилизация до советника",
-    "sov_basic_free_trade": "Снятие паранойи+свободная торговля",
-    "sov_without_focus_tree": "Без бонусов от фокусов на снятие паранойи",
-}.items():
-    x, y, max_mil = get_points(preset_name)
-    fig.add_trace(go.Scatter(x=x, y=y, name=f"{graph_name}({max_mil})"))
+for preset_name in presets_list:
+    x, y, max_mil = get_points(
+        preset_name,
+        "casual", "sov")
+    fig.add_trace(go.Scatter(x=x, y=y, name=f"{preset_name}({max_mil})"))
 fig.show()
