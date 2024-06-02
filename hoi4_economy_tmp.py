@@ -87,15 +87,3 @@ for preset_name, graph_name in {
     x, y, max_mil = get_points(preset_name)
     fig.add_trace(go.Scatter(x=x, y=y, name=f"{graph_name}({max_mil})"))
 fig.show()
-
-# График строительства
-fig = go.Figure()
-x, y, days = get_construction_graph("sov_basic",
-                                    28, 1825)
-fig.add_trace(go.Scatter(x=days, y=x, name=f"фабрики, случай 1"))
-fig.add_trace(go.Scatter(x=days, y=y, name=f"заводы, случай 1"))
-x, y, days = get_construction_graph("sov_basic",
-                                    50, 1825)
-fig.add_trace(go.Scatter(x=days, y=x, name=f"фабрики, случай 2"))
-fig.add_trace(go.Scatter(x=days, y=y, name=f"заводы, случай 2"))
-fig.show()
