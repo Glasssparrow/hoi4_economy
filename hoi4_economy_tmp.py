@@ -8,7 +8,7 @@ from read_presets.preset_into_country import (
 from automated_construction.construct_civil_and_mil import (
     auto_construct_without_infrastructure)
 import plotly.graph_objs as go
-from os import path, listdir
+from os import listdir
 
 
 def run_and_get_country(main_preset, tech, trade, length, cycle, switch_point,
@@ -71,10 +71,17 @@ for file in files_list:
     if file[-len(GAME_DATA_FILE_TYPE):] == GAME_DATA_FILE_TYPE:
         presets_list.append(file[:-len(GAME_DATA_FILE_TYPE)])
 
+
+# Названия файлов для торговли и технологий
+TECH_PRESET = "casual"
+TRADE_PRESET = "sov"
+
 fig = go.Figure()
 for preset_name in presets_list:
     x, y, max_mil = get_points(
-        preset_name,
-        "casual", "sov")
+        main_preset_name=preset_name,
+        tech_preset_name=TECH_PRESET,
+        trade_preset_name=TRADE_PRESET
+    )
     fig.add_trace(go.Scatter(x=x, y=y, name=f"{preset_name}({max_mil})"))
 fig.show()
