@@ -1,1 +1,1 @@
-библиотека plotly для строительства графиков в hoi4_economy_tmp.py
+plotly==5.22.0
